@@ -61,8 +61,8 @@ app.post("/generate", async (req, res) => {
     );
     
     const aiOutput = response.data.choices[0].message.content.trim();
-    console.log(aiOutput);
-    console.log(JSON.parse(aiOutput));
+    // console.log(aiOutput);
+    // console.log(JSON.parse(aiOutput));
     
     res.json(JSON.parse(aiOutput));
     
