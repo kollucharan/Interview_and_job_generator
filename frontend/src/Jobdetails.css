@@ -1,3 +1,194 @@
+/* 
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: sans-serif;
+  line-height: 1.5;
+  color: #333;
+  background-color: #f9fafb;
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  overflow-x: hidden;
+}
+
+
+.job-details-container {
+  width: 100%;
+  min-height: 100vh;
+  padding: 20px;
+  background-color: #f9fafb;
+  display: flex;
+  flex-direction: column;
+}
+
+h2 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+
+.flex-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.flex-row:first-child {
+  justify-content: flex-start;
+}
+
+
+.flex-row:not(:first-child) {
+  justify-content: space-between;
+}
+
+
+.flex-row .flex-row {
+  margin-bottom: 0;
+  gap: 8px;
+  justify-content: flex-end;
+  width: auto;
+}
+
+
+.button {
+  padding: 0.5rem 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background: #e5e7eb;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 0.95rem;
+}
+
+.button:hover {
+  background: #d1d5db;
+}
+
+
+.button.active {
+  background: #3b82f6;
+  color: white;
+  border-color: #3b82f6;
+}
+
+
+.copy-success {
+  margin-left: 8px;
+  color: #10b981;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+
+.card {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  padding: 24px;
+  margin-bottom: 20px;
+  flex: 1;
+  width: 100%;
+}
+
+
+.card .markdown {
+  overflow-wrap: break-word;
+  line-height: 1.6;
+}
+
+
+.card ol {
+  list-style: decimal;
+  margin-top: 1rem;
+  margin-left: 1.25rem;
+}
+
+.card li {
+  margin-bottom: 1rem;
+  padding-left: 0.5rem;
+}
+
+
+.role-label {
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: #4b5563;
+  margin-left: auto;
+}
+
+
+@media (max-width: 640px) {
+  .job-details-container {
+    padding: 16px;
+  }
+  
+  .flex-row {
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+  }
+  
+  .flex-row .flex-row {
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 12px;
+  }
+  
+  .button {
+    width: auto;
+    text-align: center;
+  }
+  
+  .role-label {
+    margin-left: 0;
+    margin-top: 12px;
+    width: 100%;
+    text-align: center;
+  }
+  
+  .card {
+    padding: 16px;
+  }
+}
+
+
+@media (min-width: 641px) and (max-width: 1024px) {
+  .job-details-container {
+    padding: 24px;
+  }
+  
+  h2 {
+    font-size: 1.75rem;
+  }
+  
+  .card {
+    padding: 20px;
+  }
+}
+
+
+@media (min-width: 1025px) {
+  .job-details-container {
+    padding: 32px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .card {
+    padding: 32px;
+  }
+} */
+
+
 /*-----------------------------------
   1. Global Resets & Base
 -----------------------------------*/
@@ -36,69 +227,99 @@ h2 {
 }
 
 /*-----------------------------------
-  3. Flex Utilities
+  3. Tab Navigation
 -----------------------------------*/
-/* Row of buttons or items */
-.flex-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  align-items: center;
+.tabs-container {
   margin-bottom: 20px;
+  position: relative;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.tabs-navigation {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  position: relative;
+  flex-wrap: wrap;
+}
+
+.tab {
+  padding: 8px 12px;
+  font-size: 14px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  position: relative;
+  font-weight: 500;
+  color: #606060;
+  transition: color 0.2s ease;
+  min-width: 120px;
+  text-align: center;
+  /* Remove outline on focus/click */
+  outline: none;
+}
+
+.tab:hover {
+  color: #000;
+}
+
+.active-tab {
+  color: #3b82f6;
+  font-weight: 600;
+}
+
+/* Custom focus style for accessibility that doesn't show a border */
+.tab:focus-visible {
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.3);
+  border-radius: 2px;
+}
+
+.tab-indicator-container {
+  position: relative;
+  height: 2px;
   width: 100%;
 }
 
-.flex-row:first-child {
-  justify-content: flex-start;
+.tab-indicator {
+  position: absolute;
+  bottom: 0;
+  height: 2px;
+  background-color: #3b82f6;
+  transition: left 0.3s ease, width 0.3s ease;
 }
 
-/* Button container flex row */
-.flex-row:not(:first-child) {
-  justify-content: space-between;
-}
-
-/* Button container for Edit and Copy buttons */
-.flex-row .flex-row {
-  margin-bottom: 0;
-  gap: 8px;
-  justify-content: flex-end;
-  width: auto;
-}
-
-/* Individual button styling */
-.button {
-  padding: 0.5rem 1rem;
-  border: 1px solid #ccc;
+.home-button {
+  margin-left: auto;
+  padding: 8px 16px;
+  background-color: #e5e7eb;
+  border: 1px solid #d1d5db;
   border-radius: 4px;
-  background: #e5e7eb;
+  font-size: 14px;
   cursor: pointer;
   transition: all 0.2s ease;
-  font-size: 0.95rem;
+  /* Remove outline on focus/click */
+  outline: none;
 }
 
-.button:hover {
-  background: #d1d5db;
+.home-button:focus-visible {
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.3);
 }
 
-/* Active / Selected state */
-.button.active {
-  background: #3b82f6;
-  color: white;
-  border-color: #3b82f6;
+.home-button:hover {
+  background-color: #d1d5db;
 }
 
-/* Copy-success badge */
-.copy-success {
-  margin-left: 8px;
-  color: #10b981;
-  font-size: 0.875rem;
-  font-weight: 500;
+.role-label {
+  font-weight: 600;
+  font-size: 1rem;
+  color: #4b5563;
+  margin-left: 12px;
 }
 
 /*-----------------------------------
   4. Content Cards
 -----------------------------------*/
-.card {
+.content-card {
   background: white;
   border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.08);
@@ -108,32 +329,65 @@ h2 {
   width: 100%;
 }
 
-/* Markdown content inside */
-.card .markdown {
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.action-button {
+  padding: 8px 16px;
+  background: #e5e7eb;
+  border: 1px solid #d1d5db;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 14px;
+  /* Remove outline on focus/click */
+  outline: none;
+}
+
+.action-button:focus-visible {
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.3);
+}
+
+.action-button:hover {
+  background: #d1d5db;
+}
+
+.copy-success {
+  margin-left: 8px;
+  color: #10b981;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+/*-----------------------------------
+  5. Content Styling
+-----------------------------------*/
+.markdown-content {
   overflow-wrap: break-word;
   line-height: 1.6;
 }
 
-/* Questions list */
-.card ol {
+.questions-list {
   list-style: decimal;
   margin-top: 1rem;
   margin-left: 1.25rem;
 }
 
-.card li {
+.questions-list li {
   margin-bottom: 1rem;
   padding-left: 0.5rem;
-}
-
-/*-----------------------------------
-  5. Role label
------------------------------------*/
-.role-label {
-  font-weight: 600;
-  font-size: 1.1rem;
-  color: #4b5563;
-  margin-left: auto;
 }
 
 /*-----------------------------------
@@ -145,31 +399,48 @@ h2 {
     padding: 16px;
   }
   
-  .flex-row {
+  .tabs-navigation {
     flex-direction: column;
     align-items: stretch;
     width: 100%;
+    gap: 8px;
   }
   
-  .flex-row .flex-row {
-    flex-direction: row;
-    justify-content: center;
-    margin-top: 12px;
+  .tab {
+    width: 100%;
+    min-width: 100%;
+    text-align: center;
   }
   
-  .button {
-    width: auto;
+  .tab-indicator {
+    display: none;
+  }
+  
+  .home-button {
+    margin-left: 0;
+    width: 100%;
     text-align: center;
   }
   
   .role-label {
     margin-left: 0;
-    margin-top: 12px;
+    margin-top: 8px;
     width: 100%;
     text-align: center;
   }
   
-  .card {
+  .card-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .action-buttons {
+    margin-top: 10px;
+    justify-content: flex-start;
+    width: 100%;
+  }
+  
+  .content-card {
     padding: 16px;
   }
 }
@@ -184,9 +455,26 @@ h2 {
     font-size: 1.75rem;
   }
   
-  .card {
+  .content-card {
     padding: 20px;
   }
+} 
+
+.download-button {
+  background-color: #e5e7eb;
+  position: relative;
+}
+
+.download-button:hover {
+  background-color: #d1d5db;
+}
+
+/* Optional: Add a small download icon with CSS */
+.download-button::after {
+  content: "↓";
+  font-size: 12px;
+  margin-left: 5px;
+  opacity: 0.7;
 }
 
 /* Desktop: full-width flex behavior */
@@ -197,7 +485,62 @@ h2 {
     margin: 0 auto;
   }
   
-  .card {
+  .content-card {
     padding: 32px;
+  }
+}
+
+/* Add these styles to your existing Jobdetails.css file */
+
+.download-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #e5e7eb;
+  position: relative;
+  white-space: nowrap;
+}
+
+.download-button:hover {
+  background-color: #d1d5db;
+}
+
+/* Small download icon */
+.download-button::after {
+  content: "↓";
+  font-size: 12px;
+  margin-left: 5px;
+  opacity: 0.7;
+}
+
+/* PDF download button styling */
+.pdf-button {
+  background-color: #fee2e2;
+  border-color: #fca5a5;
+  color: #991b1b;
+}
+
+.pdf-button:hover {
+  background-color: #fecaca;
+}
+
+.pdf-button::after {
+  content: "↓";
+  font-size: 12px;
+  margin-left: 5px;
+  opacity: 0.7;
+}
+
+/* Responsive adjustments for buttons */
+@media (max-width: 640px) {
+  .action-buttons {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  
+  .action-button {
+    flex: 1 0 calc(50% - 4px);
+    padding: 6px 10px;
+    font-size: 13px;
   }
 }
