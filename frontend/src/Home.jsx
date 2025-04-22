@@ -9,11 +9,15 @@ import "./HomeStyles.css";
 export default function Home() {
   const [jobRole, setJobRole] = useState("");
   const [loading, setLoading] = useState(false);
+  const [companyName, setCompanyName] = useState(""); 
   const navigate = useNavigate();
 
   const handleGenerate = async () => {
-    if (!jobRole.trim()) {
-      toast.error("Please enter a job role.");
+    // if (!jobRole.trim()) {
+    //   toast.error("Please enter a job role.");
+    //   return;
+    if (!jobRole.trim() || !companyName.trim()) {
+      toast.error("Please enter both job role and company name.");
       return;
     }
 
@@ -21,6 +25,7 @@ export default function Home() {
     try {
       const { data } = await axios.post("https://interview-and-job-generator.onrender.com/generate", {
         role: jobRole,
+        company: companyName, 
       });
 
       navigate("/details", {
@@ -28,6 +33,7 @@ export default function Home() {
           description: data.description,
           questions: data.questions || [],
           role: jobRole,
+          company: companyName,
         },
       });
     } catch (error) {
@@ -74,14 +80,31 @@ export default function Home() {
         </section>
 
         <section className="generator-card">
-          <h2 className="card-title">Start by entering a job role</h2>
-          <input
+          <h2 className="card-title">Start by entering a job role and Company Name</h2>
+          <label className="input-label" htmlFor="job-role">
+             Job Role
+            </label>
+            <input
             type="text"
             className="job-input"
             placeholder="e.g. Frontend Developer"
             value={jobRole}
             onChange={(e) => setJobRole(e.target.value)}
           />
+
+
+
+          <label className="input-label" htmlFor="company-name">
+             Company Name
+           </label>
+          <input
+            type="text"
+            className="job-input"
+            placeholder="e.g. Google"
+            value={companyName}
+            onChange={(e) => setCompanyName(e.target.value)}
+          />
+          
           <button
             className="generate-btn"
             onClick={handleGenerate}

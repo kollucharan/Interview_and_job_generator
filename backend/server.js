@@ -12,54 +12,97 @@ app.use(express.json());
 app.use(cors());
 
 app.post("/generate", async (req, res) => {
-  const { role } = req.body;
+  const { role ,company} = req.body;
   if (!role) {
     return res.status(400).json({ error: "Job role is required" });
   }
+
+  if (!company) {
+    return res.status(400).json({ error: "Company name is required" });
+  }
   
-  try {
-    const response = await axios.post(
-      "https://api.openai.com/v1/chat/completions",
-      {
-        model: "gpt-4-turbo",
-        messages: [{ role: "user", content: `
-          Generate a JSON object with two keys:
-            1. "description": a markdown string that contains exactly four sub‑sections, each marked with these Markdown headings and filled in for the ${role} role:
+  // try {
+  //   const response = await axios.post(
+  //     "https://api.openai.com/v1/chat/completions",
+  //     {
+  //       model: "gpt-4-turbo",
+  //       messages: [{ role: "user", content: `
+  //         Generate a JSON object with two keys:
+  //           1. "description": a markdown string that contains exactly four sub‑sections, each marked with these Markdown headings and filled in for the ${role} role:
                 
-                ## Description
-                (a 2–3 sentence overview of the ${role})
+  //               ## Description
+  //               (a 2–3 sentence overview of the ${role})
                 
-                ## Responsibilities
-                (a bullet‑list of 5–7 key responsibilities, e.g.:
-                - Item 1
-                - Item 2
-                …)
+  //               ## Responsibilities
+  //               (a bullet‑list of 5–7 key responsibilities, e.g.:
+  //               - Item 1
+  //               - Item 2
+  //               …)
                 
-                ## Requirements
-                (a bullet‑list of 5–7 must‑have requirements, e.g.:
-                - Item 1
-                - Item 2
-                …)
+  //               ## Requirements
+  //               (a bullet‑list of 5–7 must‑have requirements, e.g.:
+  //               - Item 1
+  //               - Item 2
+  //               …)
                 
-                ## Benefits
-                (a bullet‑list of 3–5 benefits, e.g.:
-                - Item 1
-                - Item 2
-                …)
+  //               ## Benefits
+  //               (a bullet‑list of 3–5 benefits, e.g.:
+  //               - Item 1
+  //               - Item 2
+  //               …)
                 
-            2. "questions": an array of ten interview questions for a ${role}.
+  //           2. "questions": an array of ten interview questions for a ${role}.
             
-            Output **only** valid JSON—no extra text, no explanations.
-        ` }],
-        max_tokens: 1000,
+  //           Output **only** valid JSON—no extra text, no explanations.
+  //       ` }],
+  //       max_tokens: 1000,
+  //     },
+  //     {
+  //       headers: {
+  //         "Authorization": `Bearer ${process.env.OPENAI_API_KEY}`,
+  //         "Content-Type": "application/json",
+  //       },
+  //     }
+  //   );
+
+  
+try {
+  const response = await axios.post(
+    "https://api.openai.com/v1/chat/completions",
+    {
+      model: "gpt-4-turbo",
+      messages: [{
+        role: "user",
+        content: `
+Generate a JSON object with two keys:
+
+1. "description": a markdown string containing exactly four sub‑sections (using these headings) specifically for the ${role} role at ${company}:
+   ## Description
+   (2–3 sentence overview of the ${role} at ${company}, mentioning industry context if relevant)
+
+   ## Responsibilities
+   (5–7 bullet points of key responsibilities as they would apply at ${company})
+
+   ## Requirements
+   (5–7 bullet points of must‑have skills/experience ${company} expects for this role)
+
+   ## Benefits
+   (3–5 bullet points of perks/benefits ${company} typically offers)
+
+2. "questions": an array of ten interview questions for a ${role} at ${company}, reflecting the level and style of interviews ${company} is known for. Tailor question difficulty and focus areas (e.g. system design, culture fit, domain knowledge) to ${company}’s usual process.
+
+**Output only valid JSON**—no extra text or explanations.
+        `
+      }],
+      max_tokens: 1200,
+    },
+    {
+      headers: {
+        "Authorization": `Bearer ${process.env.OPENAI_API_KEY}`,
+        "Content-Type": "application/json",
       },
-      {
-        headers: {
-          "Authorization": `Bearer ${process.env.OPENAI_API_KEY}`,
-          "Content-Type": "application/json",
-        },
-      }
-    );
+    }
+  );
     
     const aiOutput = response.data.choices[0].message.content.trim();
     // console.log(aiOutput);
@@ -67,7 +110,9 @@ app.post("/generate", async (req, res) => {
     
     res.json(JSON.parse(aiOutput));
     
-  } catch (error) {
+  } 
+  
+  catch (error) {
     console.error(error);
     res.status(500).json({ error: "Failed to generate job description" });
   }
