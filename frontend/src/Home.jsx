@@ -9,23 +9,23 @@ import "./HomeStyles.css";
 export default function Home() {
   const [jobRole, setJobRole] = useState("");
   const [loading, setLoading] = useState(false);
-  const [companyName, setCompanyName] = useState(""); 
+  // const [companyName, setCompanyName] = useState(""); 
   const navigate = useNavigate();
 
   const handleGenerate = async () => {
-    // if (!jobRole.trim()) {
-    //   toast.error("Please enter a job role.");
-    //   return;
-    if (!jobRole.trim() || !companyName.trim()) {
-      toast.error("Please enter both job role and company name.");
+    if (!jobRole.trim()) {
+      toast.error("Please enter a job role.");
       return;
+    // if (!jobRole.trim() || !companyName.trim()) {
+    //   toast.error("Please enter both job role and company name.");
+    //   return;
     }
 
     setLoading(true);
     try {
-      const { data } = await axios.post("https://interview-and-job-generator.onrender.com/generate", {
+      const { data } = await axios.post("http://localhost:5000/generate", {
         role: jobRole,
-        company: companyName, 
+        // company: companyName, 
       });
 
       navigate("/details", {
@@ -33,7 +33,7 @@ export default function Home() {
           description: data.description,
           questions: data.questions || [],
           role: jobRole,
-          company: companyName,
+          // company: companyName,
         },
       });
     } catch (error) {
@@ -80,21 +80,20 @@ export default function Home() {
         </section>
 
         <section className="generator-card">
-          <h2 className="card-title">Start by entering a job role and Company Name</h2>
+          <h2 className="card-title">Start by entering a job role </h2>
           <label className="input-label" htmlFor="job-role">
              Job Role
             </label>
             <input
             type="text"
             className="job-input"
-            placeholder="e.g. Frontend Developer"
+            placeholder="e.g. Junior Frontend Developer, Senior Data Scientist"
             value={jobRole}
             onChange={(e) => setJobRole(e.target.value)}
           />
 
 
-
-          <label className="input-label" htmlFor="company-name">
+          {/* <label className="input-label" htmlFor="company-name">
              Company Name
            </label>
           <input
@@ -103,7 +102,7 @@ export default function Home() {
             placeholder="e.g. Google"
             value={companyName}
             onChange={(e) => setCompanyName(e.target.value)}
-          />
+          /> */}
           
           <button
             className="generate-btn"
