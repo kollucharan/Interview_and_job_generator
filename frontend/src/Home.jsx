@@ -23,7 +23,7 @@ export default function Home() {
 
     setLoading(true);
     try {
-      const { data } = await axios.post("http://localhost:5000/generate", {
+      const { data } = await axios.post("https://interview-and-job-generator.onrender.com/generate", {
         role: jobRole,
         // company: companyName, 
       });
