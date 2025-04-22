@@ -77,16 +77,16 @@ try {
 Generate a JSON object with two keys:
 
 1. "description": a markdown string containing exactly four sub‑sections (using these headings) specifically for the ${role} role at ${company}:
-   ## Description
+   #### Description
    (2–3 sentence overview of the ${role} at ${company}, mentioning industry context if relevant)
 
-   ## Responsibilities
+   #### Responsibilities
    (5–7 bullet points of key responsibilities as they would apply at ${company})
 
-   ## Requirements
+   #### Requirements
    (5–7 bullet points of must‑have skills/experience ${company} expects for this role)
 
-   ## Benefits
+   #### Benefits
    (3–5 bullet points of perks/benefits ${company} typically offers)
 
 2. "questions": an array of ten interview questions for a ${role} at ${company}, reflecting the level and style of interviews ${company} is known for. Tailor question difficulty and focus areas (e.g. system design, culture fit, domain knowledge) to ${company}’s usual process.
