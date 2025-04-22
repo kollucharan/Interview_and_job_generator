@@ -65,16 +65,12 @@ app.post("/generate", async (req, res) => {
   //     }
   //   );
 
-
-
-
-
   try {
     
     const response = await axios.post(
       "https://api.openai.com/v1/chat/completions",
       {
-        model: "gpt-4-turbo",
+        model: "gpt-4o-mini",
         messages: [{
           role: "user",
           content: `
@@ -82,16 +78,16 @@ app.post("/generate", async (req, res) => {
     
     1. "description": a markdown string with exactly four sections, written for the "${role}" role at "${company}". Each section should start with a heading using four hash symbols (####):
     
-    #### Description
+    ### Description
     (2–3 sentence overview of the ${role} at ${company}, mentioning industry context if relevant)
     
-    #### Responsibilities
+    ### Responsibilities
     (5–7 bullet points of key responsibilities for this role at ${company})
     
-    #### Requirements
+    ### Requirements
     (5–7 bullet points of must-have skills/experience ${company} looks for in this role)
     
-    #### Benefits
+    ### Benefits
     (3–5 bullet points of perks/benefits typically offered by ${company})
     
     2. "questions": an array of ten interview questions tailored to the ${role} at ${company}, reflecting the typical interview process, expectations, and culture at ${company}.
