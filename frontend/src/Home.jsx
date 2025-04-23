@@ -5,7 +5,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 import "./HomeStyles.css";
 import atsIcon from "./assets/images/ATS.svg";
-import jdIcon from "./assets/images/job description.svg";
+import jdIcon from "./assets/images/job-description.svg";
 import questionIcon from "./assets/images/question.svg";
 import headlogo from "./assets/images/Talviewlogo.png";
 
