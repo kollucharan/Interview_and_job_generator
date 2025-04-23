@@ -1,10 +1,13 @@
-
 import React, { useState } from "react";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 import "./HomeStyles.css";
+import atsIcon from "./assets/images/ATS.svg";
+import jdIcon from "./assets/images/job description.svg";
+import questionIcon from "./assets/images/question.svg";
+import headlogo from "./assets/images/Talviewlogo.png";
 
 export default function Home() {
   const [jobRole, setJobRole] = useState("");
@@ -19,9 +22,12 @@ export default function Home() {
 
     setLoading(true);
     try {
-      const { data } = await axios.post("https://interview-and-job-generator.onrender.com/generate", {
-        role: jobRole,
-      });
+      const { data } = await axios.post(
+        "https://interview-and-job-generator.onrender.com/generate",
+        {
+          role: jobRole,
+        }
+      );
 
       navigate("/details", {
         state: {
@@ -43,7 +49,7 @@ export default function Home() {
       <header className="header">
         <div className="header-container">
           <div className="logo">
-            <svg
+            {/* <svg
               className="logo-icon"
               fill="none"
               stroke="currentColor"
@@ -56,16 +62,18 @@ export default function Home() {
                 strokeWidth={2}
                 d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
               />
-            </svg>
-            <span className="logo-text">Talview</span>
+            </svg> */}
+            <img src={headlogo} alt="Talview Logo" className="head-logo" />
+            {/* <span className="logo-text">Talview</span> */}
           </div>
         </div>
       </header>
       <main className="main-content">
         <section className="hero">
-          <h1 className="main-heading">Generate Job Descriptions Instantly</h1>
+          <h1 className="main-heading"> Free AI Job Description Generator</h1>
           <p className="sub-heading">
-            Create polished job descriptions and interview questions for any role
+            Our AI hiring tool help you generate accurate, ready-to-use job
+            descriptions and interview questions instantly
           </p>
         </section>
 
@@ -102,16 +110,37 @@ export default function Home() {
           <h2 className="features-heading">Why Use Our Tool?</h2>
           <div className="features-grid">
             <div className="feature-card">
-              <h3>Fast & Reliable</h3>
-              <p>Instantly create job content that meets hiring standards.</p>
+              <img src={atsIcon} alt="ATS Icon" className="icon" />
+              <h3>ATS-Optimized Job Descriptions</h3>
+              <ul>
+                <li>ATS-friendly format for higher reach</li>
+                <li>Compatible with major job boards</li>
+                <li>Structured and clear for easy candidate matching</li>
+              </ul>
             </div>
             <div className="feature-card">
-              <h3>Tailored Output</h3>
-              <p>Content is customized to the role you enter — no fluff!</p>
+              <img src={jdIcon} alt="JD ICON" className="icon" />
+              <h3>Clear and Precise Job Descriptions</h3>
+              <ul>
+                <li>Keywords optimized for industry visibility</li>
+                <li>
+                  Responsibilities, Requirements and Benefits tailored to the
+                  position
+                </li>
+                <li>Copy, Edit, or Download JD’s Easily</li>
+              </ul>
             </div>
             <div className="feature-card">
-              <h3>Time Saver</h3>
-              <p>Say goodbye to manual formatting and redundant writing.</p>
+              <img src={questionIcon} alt="QuestionIcon" className="icon" />
+              <h3>Auto-Generate Interview Questions</h3>
+              <ul>
+                <li>
+                  Questions tailored to the responsibilities and skills in your
+                  JD
+                </li>
+                <li>Save time on creating interview questions manually</li>
+                <li>Structured Questions for better candidate evaluation</li>
+              </ul>
             </div>
           </div>
         </section>

@@ -21,11 +21,9 @@
     overflow-x: hidden;
   }
   
-  /*----------------------------------------
-    2. Header
-  ----------------------------------------*/
+
   .header {
-    /* background-color: #1e3a8a; */
+  
     background-color:#1D4ED8;
     color: white;
     padding: 1rem;
@@ -57,9 +55,7 @@
     font-size: 1.25rem;
   }
   
-  /*----------------------------------------
-    3. Main Content
-  ----------------------------------------*/
+
   .main-content {
     flex: 1;
     padding: 2rem;
@@ -90,9 +86,7 @@
     font-size: 1.2rem;
   }
   
-  /*----------------------------------------
-    4. Generator Card
-  ----------------------------------------*/
+
   .generator-card {
     background-color: white;
     padding: 2rem;
@@ -117,8 +111,8 @@
     font-size: 1rem;
     outline: none;
     transition: border-color 0.2s ease;
-    background-color: #ffffff; /* Ensures white background */
-    color: #000000; /* Ensures black text */
+    background-color: #ffffff; 
+    color: #000000; 
   }
   
   .job-input:focus {
@@ -128,7 +122,6 @@
   
   .generate-btn {
     width: 100%;
-    /* background-color: #2563eb; */
     background-color: #1D4ED8;
     color: white;
     padding: 0.75rem;
@@ -141,7 +134,6 @@
   }
   
   .generate-btn:hover:not(:disabled) {
-    /* background-color: #1e40af; */
     background-color: #1D4ED8;
   }
   
@@ -167,9 +159,7 @@
     to { transform: rotate(360deg); }
   }
   
-  /*----------------------------------------
-    5. Features Section
-  ----------------------------------------*/
+
   .features-section {
     margin-top: 2rem;
     width: 100%;
@@ -202,9 +192,7 @@
     color: #1e3a8a;
   }
   
-  /*----------------------------------------
-    6. Footer
-  ----------------------------------------*/
+
   .footer {
     background-color: #f3f4f6;
     text-align: center;
@@ -223,9 +211,7 @@
     font-size: 0.95rem;
     color: #333;
   }
-  /* Add these styles to your HomeStyles.css file */
 
-/* Loader Container */
 .loader-container {
   display: flex;
   flex-direction: column;
@@ -234,7 +220,7 @@
   width: 100%;
 }
 
-/* Pulse Loader Animation */
+
 .pulse-loader {
   display: flex;
   justify-content: center;
@@ -281,10 +267,10 @@
   text-align: center;
 }
 
-/* Button Styles with Responsive Adjustments */
+
 .generate-btn {
   width: 100%;
-  /* background-color: #2563eb; */
+
   background-color: #1D4ED8;
   color: white;
   padding: 0.75rem;
@@ -294,14 +280,20 @@
   font-weight: bold;
   cursor: pointer;
   transition: all 0.3s ease;
-  min-height: 50px; /* Ensures consistent height when loading */
+  min-height: 50px; 
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
+.icon{
+  margin-right: 1 rem;
+  width: 30px; 
+  height: 30px; 
+}
+
 .generate-btn:hover:not(:disabled) {
-  /* background-color: #1e40af; */
+ 
   background-color: #1D4ED8;
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
@@ -313,11 +305,11 @@
 }
 
 .generate-btn:disabled {
-  background-color: #3b82f6; /* Keep a nice blue when loading */
+  background-color: #3b82f6; 
   cursor: not-allowed;
 }
 
-/* Responsive Adjustments for Loader */
+
 @media (max-width: 480px) {
   .pulse-bubble {
     width: 8px;
@@ -346,7 +338,6 @@
     margin-top: 0;
     font-size: 0.75rem;
     max-width: 160px;
-    /* Ensure text doesn't wrap too much */
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -363,7 +354,6 @@
   }
 }
 
-/* Enhance existing responsive styles */
 @media (max-width: 768px) {
   .main-heading {
     font-size: 1.75rem;
@@ -414,3 +404,13 @@
       grid-template-columns: repeat(2, 1fr);
     }
   }
+
+  .head-logo {
+    width: 80px;
+    height: auto;
+    margin-right: 8px;
+  }
+  
+
+
+  
