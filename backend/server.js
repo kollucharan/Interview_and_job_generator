@@ -21,7 +21,7 @@ app.post("/generate", async (req, res) => {
     const response = await axios.post(
       "https://api.openai.com/v1/chat/completions",
       {
-        model: "gpt-4-turbo",
+        model: "gpt-3.5-turbo",
         messages: [{ role: "user", content: `
           Generate a JSON object with two keys:
             1. "description": a markdown string that contains exactly four sub‑sections, each marked with these Markdown headings and filled in for the ${role} role:
