@@ -74,7 +74,7 @@ export default function Home() {
           <input
             type="text"
             className="job-input"
-            placeholder="e.g. Junior Frontend Developer, Senior Data Scientist"
+            placeholder="e.g. Junior Frontend Developer"
             value={jobRole}
             onChange={(e) => setJobRole(e.target.value)}
           />
