@@ -29,6 +29,12 @@ export default function Home() {
         }
       );
 
+      if (data.error) {
+          toast.error(data.error);
+              return;
+            }
+       
+
       navigate("/details", {
         state: {
           description: data.description,
@@ -37,7 +43,12 @@ export default function Home() {
         },
       });
     } catch (error) {
-      toast.error("Error generating content.");
+      // toast.error("Error generating content.");
+      if (error.response && error.response.data && error.response.data.error) {
+        toast.error(error.response.data.error);
+      } else {
+        toast.error("Error generating content.");
+      }
     } finally {
       setLoading(false);
     }
