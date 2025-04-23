@@ -57,10 +57,6 @@ export default function Home() {
                 d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
               />
             </svg>
-            {/* <img
-              src="https://www.talview.com/hubfs/Talview_Website_2019_AB/Talview%20Logo_Website_19.svg"
-              alt="Talview Logo"
-              className="logo-icon"/> */}
             <span className="logo-text">Talview</span>
           </div>
         </div>
