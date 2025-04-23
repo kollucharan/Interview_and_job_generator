@@ -1,7 +1,5 @@
 
-/*-----------------------------------
-  1. Global Resets & Base
------------------------------------*/
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -19,9 +17,7 @@ body {
   overflow-x: hidden;
 }
 
-/*-----------------------------------
-  2. Wrapper & Typography
------------------------------------*/
+
 .job-details-container {
   width: 100%;
   min-height: 100vh;
@@ -39,9 +35,7 @@ h2 {
   margin-bottom: 0.5rem;
 }
 
-/*-----------------------------------
-  3. Tab Navigation
------------------------------------*/
+
 .tabs-container {
   margin-bottom: 1.5rem;
   position: relative;
@@ -140,9 +134,7 @@ h2 {
   max-width: 250px;
 }
 
-/*-----------------------------------
-  4. Content Cards
------------------------------------*/
+
 .content-card {
   background: white;
   border-radius: 0 0 8px 8px;
@@ -222,9 +214,7 @@ h2 {
   border-radius: 4px;
 }
 
-/*-----------------------------------
-  5. Content Styling
------------------------------------*/
+
 .markdown-content {
   overflow-wrap: break-word;
   line-height: 1.7;
@@ -284,9 +274,7 @@ h2 {
   line-height: 1.6;
 }
 
-/*-----------------------------------
-  6. Download Buttons
------------------------------------*/
+
 .download-button {
   display: inline-flex;
   align-items: center;
@@ -302,13 +290,12 @@ h2 {
   background-color: #e0e7ff;
 }
 
-/* Small download icon */
+
 .download-button::before {
   content: "📄";
   margin-right: 0.4rem;
 }
 
-/* PDF download button styling */
 .pdf-button {
   background-color: #fef2f2;
   border-color: #fecaca;
@@ -323,10 +310,9 @@ h2 {
   content: "📑";
 } 
 
-/*-----------------------------------
-  7. Responsive Breakpoints
------------------------------------*/
-/* Mobile: single-column stacks everything */
+
+
+
 @media (max-width: 768px) {
   .job-details-container {
     padding: 1rem;
@@ -384,7 +370,7 @@ h2 {
   }
 }
 
-/* Tablet */
+
 @media (min-width: 769px) and (max-width: 1024px) {
   .job-details-container {
     padding: 1.5rem;
@@ -403,7 +389,7 @@ h2 {
   }
 }
 
-/* Desktop */
+
 @media (min-width: 1025px) {
   .job-details-container {
     padding: 2rem;
@@ -416,10 +402,13 @@ h2 {
   }
 }
 
-/* Override focus styles */
+
 .tab:focus,
 .tab:active,
 .tab:focus-visible {
   outline: none;
   box-shadow: none;
-}
+} 
+ 
+
+

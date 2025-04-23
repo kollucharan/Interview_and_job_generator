@@ -1,407 +1,4 @@
 
-/* 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  
-  body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    line-height: 1.5;
-    color: #333;
-  }
-  
-  .app-container {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    background: linear-gradient(to bottom, #ebf3fe, #ffffff);
-  }
-  
- 
-  .header {
-    background-color: #ffffff;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 100;
-  }
-  
-  .header-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 70px;
-  }
-  
-  .logo {
-    display: flex;
-    align-items: center;
-  }
-  
-  .logo-icon {
-    width: 32px;
-    height: 32px;
-    color: #3b82f6;
-  }
-  
-  .logo-text {
-    margin-left: 8px;
-    font-size: 20px;
-    font-weight: 700;
-    color: #333;
-  }
-  
-  .navigation {
-    display: flex;
-    gap: 24px;
-  }
-  
-  .nav-link {
-    color: #4b5563;
-    text-decoration: none;
-    font-weight: 500;
-    transition: color 0.3s ease;
-  }
-  
-  .nav-link:hover {
-    color: #3b82f6;
-  }
-  
-  .header-buttons {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-  }
-  
-  .sign-in-btn {
-    background: transparent;
-    color: #3b82f6;
-    border: none;
-    font-size: 16px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: color 0.3s ease;
-  }
-  
-  .sign-in-btn:hover {
-    color: #1e40af;
-  }
-  
-  .get-started-btn {
-    background-color: #3b82f6;
-    color: white;
-    border: none;
-    padding: 8px 16px;
-    border-radius: 6px;
-    font-size: 16px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .get-started-btn:hover {
-    background-color: #2563eb;
-  }
-  
-  .mobile-menu-btn {
-    display: none;
-    background: transparent;
-    border: none;
-    color: #4b5563;
-    cursor: pointer;
-  }
-  
-  .menu-icon {
-    width: 24px;
-    height: 24px;
-  }
-  
- 
-  .main-content {
-    max-width: 1200px;
-    width: 100%;
-    margin: 0 auto;
-    padding: 100px 20px 60px;
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .hero-section {
-    text-align: center;
-    margin-bottom: 40px;
-    max-width: 800px;
-  }
-  
-  .main-heading {
-    font-size: 36px;
-    font-weight: 800;
-    color: #111827;
-    margin-bottom: 16px;
-  }
-  
-  .sub-heading {
-    font-size: 18px;
-    color: #6b7280;
-  }
-  
-  .generator-card {
-    background-color: white;
-    border-radius: 12px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    padding: 32px;
-    width: 100%;
-    max-width: 500px;
-    margin-bottom: 60px;
-  }
-  
-  .card-title {
-    font-size: 20px;
-    font-weight: 600;
-    color: #1f2937;
-    margin-bottom: 24px;
-    text-align: center;
-  }
-  
-  .input-wrapper {
-    margin-bottom: 24px;
-  }
-  
-  .job-input {
-    width: 100%;
-    padding: 12px 16px;
-    border: 2px solid #e5e7eb;
-    border-radius: 8px;
-    font-size: 16px;
-    outline: none;
-    transition: border-color 0.3s ease;
-  }
-  
-  .job-input:focus {
-    border-color: #3b82f6;
-    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
-  }
-  
-  .generate-btn {
-    width: 100%;
-    background-color: #3b82f6;
-    color: white;
-    border: none;
-    padding: 12px 20px;
-    border-radius: 8px;
-    font-size: 16px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .generate-btn:hover {
-    background-color: #2563eb;
-  }
-  
-  .generate-btn:disabled {
-    background-color: #93c5fd;
-    cursor: not-allowed;
-  }
-  
-  .loading-wrapper {
-    display: flex;
-    align-items: center;
-  }
-  
-  .spinner {
-    animation: spin 1s linear infinite;
-    width: 20px;
-    height: 20px;
-    margin-right: 12px;
-  }
-  
-  .spinner-circle {
-    opacity: 0.25;
-  }
-  
-  .spinner-path {
-    opacity: 0.75;
-  }
-  
-  @keyframes spin {
-    from {
-      transform: rotate(0deg);
-    }
-    to {
-      transform: rotate(360deg);
-    }
-  }
-  
-  .features-section {
-    width: 100%;
-    max-width: 1000px;
-    margin-top: 40px;
-  }
-  
-  .features-heading {
-    font-size: 24px;
-    font-weight: 700;
-    color: #111827;
-    text-align: center;
-    margin-bottom: 32px;
-  }
-  
-  .features-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
-  }
-  
-  .feature-card {
-    background-color: #ffffff;
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-    padding: 24px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-  
-  .feature-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-  }
-  
-  .feature-icon-wrapper {
-    display: flex;
-    justify-content: center;
-    color: #3b82f6;
-    margin-bottom: 16px;
-  }
-  
-  .feature-icon {
-    width: 40px;
-    height: 40px;
-  }
-  
-  .feature-title {
-    font-size: 18px;
-    font-weight: 600;
-    color: #1f2937;
-    margin-bottom: 8px;
-    text-align: center;
-  }
-  
-  .feature-description {
-    color: #6b7280;
-    text-align: center;
-  }
-  
- 
-  .footer {
-    background-color: #1f2937;
-    color: white;
-    padding: 40px 0 20px;
-    margin-top: auto;
-  }
-  
-  .footer-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-  }
-  
-  .footer-top {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-  }
-  
-  .footer-logo {
-    display: flex;
-    align-items: center;
-  }
-  
-  .footer-logo-icon {
-    width: 24px;
-    height: 24px;
-    color: #60a5fa;
-  }
-  
-  .footer-logo-text {
-    margin-left: 8px;
-    font-size: 18px;
-    font-weight: 700;
-  }
-  
-  .footer-links {
-    display: flex;
-    gap: 20px;
-  }
-  
-  .footer-link {
-    color: #d1d5db;
-    text-decoration: none;
-    transition: color 0.3s ease;
-  }
-  
-  .footer-link:hover {
-    color: white;
-  }
-  
-  .footer-bottom {
-    text-align: center;
-    color: #9ca3af;
-    font-size: 14px;
-    padding-top: 20px;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-  }
-  
- 
-  @media (max-width: 768px) {
-    .navigation {
-      display: none;
-    }
-  
-    .sign-in-btn, .get-started-btn {
-      display: none;
-    }
-  
-    .mobile-menu-btn {
-      display: block;
-    }
-  
-    .features-grid {
-      grid-template-columns: 1fr;
-      gap: 20px;
-    }
-  
-    .footer-top {
-      flex-direction: column;
-      gap: 20px;
-    }
-  
-    .main-heading {
-      font-size: 28px;
-    }
-  
-    .generator-card {
-      padding: 24px;
-    }
-  }
-  
-  @media (min-width: 769px) and (max-width: 1024px) {
-    .features-grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
-  } */
-
   body {
     margin: 0;
     padding: 0;
@@ -623,6 +220,173 @@
     font-size: 0.95rem;
     color: #333;
   }
+  /* Add these styles to your HomeStyles.css file */
+
+/* Loader Container */
+.loader-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+/* Pulse Loader Animation */
+.pulse-loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.pulse-bubble {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #ffffff;
+  margin: 0 3px;
+}
+
+.pulse-bubble-1 {
+  animation: pulse 0.6s ease 0s infinite alternate;
+}
+
+.pulse-bubble-2 {
+  animation: pulse 0.6s ease 0.2s infinite alternate;
+}
+
+.pulse-bubble-3 {
+  animation: pulse 0.6s ease 0.4s infinite alternate;
+}
+
+@keyframes pulse {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0.6;
+    transform: scale(0.8);
+  }
+}
+
+.loader-text {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: white;
+  margin-top: 4px;
+  text-align: center;
+}
+
+/* Button Styles with Responsive Adjustments */
+.generate-btn {
+  width: 100%;
+  background-color: #2563eb;
+  color: white;
+  padding: 0.75rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-height: 50px; /* Ensures consistent height when loading */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.generate-btn:hover:not(:disabled) {
+  background-color: #1e40af;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+}
+
+.generate-btn:active:not(:disabled) {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+.generate-btn:disabled {
+  background-color: #3b82f6; /* Keep a nice blue when loading */
+  cursor: not-allowed;
+}
+
+/* Responsive Adjustments for Loader */
+@media (max-width: 480px) {
+  .pulse-bubble {
+    width: 8px;
+    height: 8px;
+    margin: 0 2px;
+  }
+  
+  .loader-text {
+    font-size: 0.8rem;
+  }
+  
+  .generate-btn {
+    min-height: 46px;
+    padding: 0.6rem;
+  }
+}
+
+@media (max-width: 375px) {
+  .loader-container {
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .loader-text {
+    margin-top: 0;
+    font-size: 0.75rem;
+    max-width: 160px;
+    /* Ensure text doesn't wrap too much */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  .pulse-loader {
+    margin-bottom: 0;
+  }
+  
+  .pulse-bubble {
+    width: 6px;
+    height: 6px;
+    margin: 0 1px;
+  }
+}
+
+/* Enhance existing responsive styles */
+@media (max-width: 768px) {
+  .main-heading {
+    font-size: 1.75rem;
+  }
+  
+  .generator-card {
+    padding: 1.5rem;
+  }
+  
+  .features-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .sub-heading {
+    font-size: 1rem;
+  }
+  
+  .card-title {
+    font-size: 1.1rem;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .features-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
   
   
   @media (max-width: 768px) {

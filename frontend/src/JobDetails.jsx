@@ -45,7 +45,6 @@ export default function JobDetails() {
     window.open('https://www.talview.com/en/', '_blank', 'noopener,noreferrer');
   };
 
-  // Function to download as plain text
   const downloadAsText = (content, fileName) => {
     const blob = new Blob([content], { type: "text/plain;charset=utf-8" });
     saveAs(blob, fileName);
@@ -206,3 +205,5 @@ export default function JobDetails() {
     </div>
   );
 }
+
+
