@@ -67,7 +67,7 @@ app.post("/generate", async (req, res) => {
     res.json(JSON.parse(aiOutput));
   }
 
- 
+
   catch (error) {
     console.error(error);
     res.status(500).json({ error: "Failed to generate job description" });
