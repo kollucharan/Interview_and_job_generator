@@ -25,7 +25,8 @@
     2. Header
   ----------------------------------------*/
   .header {
-    background-color: #1e3a8a;
+    /* background-color: #1e3a8a; */
+    background-color:#1D4ED8;
     color: white;
     padding: 1rem;
     width: 100%;
@@ -127,7 +128,8 @@
   
   .generate-btn {
     width: 100%;
-    background-color: #2563eb;
+    /* background-color: #2563eb; */
+    background-color: #1D4ED8;
     color: white;
     padding: 0.75rem;
     border: none;
@@ -139,7 +141,8 @@
   }
   
   .generate-btn:hover:not(:disabled) {
-    background-color: #1e40af;
+    /* background-color: #1e40af; */
+    background-color: #1D4ED8;
   }
   
   .generate-btn:disabled {
@@ -281,7 +284,8 @@
 /* Button Styles with Responsive Adjustments */
 .generate-btn {
   width: 100%;
-  background-color: #2563eb;
+  /* background-color: #2563eb; */
+  background-color: #1D4ED8;
   color: white;
   padding: 0.75rem;
   border: none;
@@ -297,7 +301,8 @@
 }
 
 .generate-btn:hover:not(:disabled) {
-  background-color: #1e40af;
+  /* background-color: #1e40af; */
+  background-color: #1D4ED8;
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
 }
