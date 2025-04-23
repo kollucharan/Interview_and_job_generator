@@ -17,6 +17,7 @@ app.post("/generate", async (req, res) => {
     return res.status(400).json({ error: "Job role is required" });
   }
 
+  
   try {
     const response = await axios.post(
       "https://api.openai.com/v1/chat/completions",
