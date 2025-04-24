@@ -143,11 +143,13 @@ app.post("/generate", async (req, res) => {
             content: `
     You are an expert HR assistant. The user will provide a job role.
     
-    First, check if the provided role **is a valid professional job title** (like "Frontend Developer", "Marketing Manager", etc). If it's **not a real job role** (e.g., a number like "123", gibberish, or an invalid input), respond with:
-    
-    {
-      "error": "Invalid job role provided."
-    }
+     A valid job role is any professional title composed of alphabetic words (with optional modifiers like "Junior", "Senior", "Lead", "Associate", etc.).  
+  Examples: "Junior Software Engineer", "Marketing Manager", "Lead UX Designer".
+
+ If the input is NOT a professional job title (e.g., only digits, pure gibberish, empty, or punctuation), respond exactly with:
+  {
+    "error": "Invalid job role provided."
+  }
     
     If the role is valid, generate a JSON object with two keys:
     
