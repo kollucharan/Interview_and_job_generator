@@ -50,6 +50,48 @@ export default function JobDetails() {
     saveAs(blob, fileName);
   };
 
+  // const downloadAsPDF = () => {
+  //   const pdf = new jsPDF({
+  //     orientation: 'portrait',
+  //     unit: 'mm',
+  //     format: 'a4'
+  //   });
+  
+  //   const pageWidth = pdf.internal.pageSize.getWidth();
+  //   const margin = 15;
+  //   const textWidth = pageWidth - (margin * 2);
+  //   let y = margin;
+  
+  //   const title = view === "description"
+  //     ? `Job Description for ${role}`
+  //     : `Interview Questions for ${role}`;
+  //   pdf.setFont("helvetica", "bold");
+  //   pdf.setFontSize(16);
+  //   pdf.text(title, margin, y);
+  //   y += 10;
+  
+  //   pdf.setFont("helvetica", "normal");
+  //   pdf.setFontSize(12);
+  //   const body = view === "description"
+  //     ? description
+  //     : questions.map((q, i) => `${i + 1}. ${q}`).join("\n\n");
+  
+  //   const lines = pdf.splitTextToSize(body, textWidth);
+  //   lines.forEach(line => {
+  //     if (y > pdf.internal.pageSize.getHeight() - margin) {
+  //       pdf.addPage();
+  //       y = margin;
+  //     }
+  //     pdf.text(line, margin, y);
+  //     y += 6;
+  //   });
+  
+  //   const fileName = view === "description"
+  //     ? `${role}_job_description.pdf`
+  //     : `${role}_interview_questions.pdf`;
+  //   pdf.save(fileName);
+  // };
+    
   const downloadAsPDF = () => {
     const pdf = new jsPDF({
       orientation: 'portrait',
@@ -58,40 +100,59 @@ export default function JobDetails() {
     });
   
     const pageWidth = pdf.internal.pageSize.getWidth();
+    const pageHeight = pdf.internal.pageSize.getHeight();
     const margin = 15;
-    const textWidth = pageWidth - (margin * 2);
+    const textWidth = pageWidth - margin * 2;
     let y = margin;
   
+    // Title
     const title = view === "description"
       ? `Job Description for ${role}`
       : `Interview Questions for ${role}`;
+  
     pdf.setFont("helvetica", "bold");
-    pdf.setFontSize(16);
-    pdf.text(title, margin, y);
+    pdf.setFontSize(18);
+    pdf.setTextColor(40, 40, 40);
+    pdf.text(title, pageWidth / 2, y, { align: "center" });
     y += 10;
   
+    // Line separator
+    pdf.setDrawColor(180);
+    pdf.line(margin, y, pageWidth - margin, y);
+    y += 10;
+  
+    // Body content
     pdf.setFont("helvetica", "normal");
     pdf.setFontSize(12);
-    const body = view === "description"
-      ? description
-      : questions.map((q, i) => `${i + 1}. ${q}`).join("\n\n");
+    pdf.setTextColor(60, 60, 60);
   
-    const lines = pdf.splitTextToSize(body, textWidth);
-    lines.forEach(line => {
-      if (y > pdf.internal.pageSize.getHeight() - margin) {
-        pdf.addPage();
-        y = margin;
-      }
-      pdf.text(line, margin, y);
-      y += 6;
-    });
+    if (view === "description") {
+      const lines = pdf.splitTextToSize(description, textWidth);
+      lines.forEach(line => {
+        pdf.text(line, margin, y);
+        y += 7;
+      });
+    } else {
+      questions.forEach((q, i) => {
+        const lines = pdf.splitTextToSize(`${i + 1}. ${q}`, textWidth);
+        lines.forEach((line, index) => {
+        
+          pdf.text(line, margin, y);
+          y += 6;
+        });
+        y += 2;
+      });
+    }
   
     const fileName = view === "description"
       ? `${role}_job_description.pdf`
       : `${role}_interview_questions.pdf`;
+  
     pdf.save(fileName);
   };
   
+  
+
   const downloadDescription = () => {
     downloadAsText(description, `${role}_job_description.txt`);
   };
