@@ -8,32 +8,40 @@ import atsIcon from "./assets/images/ATS.svg";
 import jdIcon from "./assets/images/job-description.svg";
 import questionIcon from "./assets/images/question.svg";
 import headlogo from "./assets/images/Talviewlogo.png";
-
+import { useRef } from "react";
 export default function Home() {
   const [jobRole, setJobRole] = useState("");
+  const [jobLevel, setJobLevel] = useState("");
+  const [requiredSkills, setRequiredSkills] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+  const formRef = useRef(null);    
+ 
 
   const handleGenerate = async () => {
-    if (!jobRole.trim()) {
+    if (!jobRole.trim() && !jobLevel.trim()) {
+      toast.error("Please enter a job role and select a job level.");
+      return;
+    } else if (!jobRole.trim()) {
       toast.error("Please enter a job role.");
+      return;
+    } else if (!jobLevel.trim()) {
+      toast.error("Select Job level.");
       return;
     }
 
     setLoading(true);
     try {
-      const { data } = await axios.post(
-        "https://interview-and-job-generator.onrender.com/generate",
-        {
-          role: jobRole,
-        }
-      );
+      const { data } = await axios.post("http://localhost:5000/generate", {
+        role: jobRole,
+        level: jobLevel,
+        skills: requiredSkills.trim() ? requiredSkills : null,
+      });
 
       if (data.error) {
-          toast.error(data.error);
-              return;
-            }
-       
+        toast.error(data.error);
+        return;
+      }
 
       navigate("/details", {
         state: {
@@ -43,7 +51,6 @@ export default function Home() {
         },
       });
     } catch (error) {
-      // toast.error("Error generating content.");
       if (error.response && error.response.data && error.response.data.error) {
         toast.error(error.response.data.error);
       } else {
@@ -60,35 +67,22 @@ export default function Home() {
       <header className="header">
         <div className="header-container">
           <div className="logo">
-            {/* <svg
-              className="logo-icon"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-              />
-            </svg> */}
             <img src={headlogo} alt="Talview Logo" className="head-logo" />
-            {/* <span className="logo-text">Talview</span> */}
           </div>
         </div>
       </header>
       <main className="main-content">
         <section className="hero">
-          <h1 className="main-heading"> Free AI Job Description Generator</h1>
+          <h1 className="main-heading">
+            Free AI Job Description & Interview Question Generator
+          </h1>
           <p className="sub-heading">
-            Our AI hiring tool help you generate accurate, ready-to-use job
-            descriptions and interview questions instantly
+            Role AI Agent helps you instantly generate accurate, ready-to-use
+            job descriptions and interview questions tailored to any role.
           </p>
         </section>
 
-        <section className="generator-card">
+        {/* <section className="generator-card">
           <h2 className="card-title">Start by entering a job role </h2>
           <input
             type="text"
@@ -109,12 +103,124 @@ export default function Home() {
                   <div className="pulse-bubble pulse-bubble-2"></div>
                   <div className="pulse-bubble pulse-bubble-3"></div>
                 </div>
-                <span className="loader-text">Creating amazing content...</span>
+                <span className="loader-text">Writing your job spec. Thinking like a hiring manager.</span>
               </div>
             ) : (
               "Generate"
             )}
           </button>
+        </section> */}
+
+        <section className="generator-card" ref={formRef} >
+          <h2 className="card-title">
+            Let's create your Job Description and Interview Questions
+          </h2>
+
+          <div className="input-group">
+            <label htmlFor="job-role">Job Role</label>
+            <input
+              id="job-role"
+              type="text"
+              className="job-input"
+              placeholder="e.g. Frontend Developer"
+              value={jobRole}
+              onChange={(e) => setJobRole(e.target.value)}
+            />
+          </div>
+
+          <div className="input-group">
+            <label htmlFor="job-level">Job Level</label>
+            <select
+              id="job-level"
+              className="job-level-select"
+              value={jobLevel}
+              onChange={(e) => setJobLevel(e.target.value)}
+            >
+              <option value="" disabled>
+                Select Level
+              </option>
+              <option value="Entry">Entry Level</option>
+              <option value="Mid">Mid Level</option>
+              <option value="Senior">Senior Level</option>
+              <option value="Lead">Lead Level</option>
+              <option value="Manager">Manager Level</option>
+            </select>
+          </div>
+
+          <div className="input-group">
+            <label htmlFor="required-skills">Required Skills (Optional)</label>
+            <textarea
+              id="required-skills"
+              className="skills-textarea"
+              placeholder="e.g. JavaScript, React, CSS, Git (separate with commas)"
+              value={requiredSkills}
+              onChange={(e) => setRequiredSkills(e.target.value)}
+              rows="3"
+            />
+          </div>
+
+          <button
+            className="generate-btn"
+            onClick={handleGenerate}
+            disabled={loading}
+          >
+            {loading ? (
+              <div className="loader-container">
+                <div className="pulse-loader">
+                  <div className="pulse-bubble pulse-bubble-1"></div>
+                  <div className="pulse-bubble pulse-bubble-2"></div>
+                  <div className="pulse-bubble pulse-bubble-3"></div>
+                </div>
+                <span className="loader-text">
+                  Writing your job spec. Thinking like a hiring manager.
+                </span>
+              </div>
+            ) : (
+              "Generate"
+            )}
+          </button>
+        </section>
+
+        <section className="examples-section">
+          <h3>Examples to Try Out</h3>
+          <div className="examples-container">
+            <div
+              className="example-card"
+              onClick={() => {
+                setJobRole("Software Engineer");
+                setJobLevel("Entry");
+                setRequiredSkills("");
+                formRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+              }}
+            >
+              <h4>Example 1</h4>
+              <p>Software Engineer</p>
+            </div>
+            <div
+              className="example-card"
+              onClick={() => {
+                setJobRole("Inside Sales Specialist");
+                setJobLevel("Entry");
+                setRequiredSkills("");
+                formRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+              }}
+            >
+              <h4>Example 2</h4>
+              <p>Inside Sales Specialist</p>
+            </div>
+            <div
+              className="example-card"
+              onClick={() => {
+                setJobRole("Accountant");
+                setJobLevel("Entry");
+                setRequiredSkills("");
+                formRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+              }}
+            >
+              <h4>Example 3</h4>
+              <p>Accountant</p>
+            </div>
+          </div>
         </section>
 
         <section className="features-section">
