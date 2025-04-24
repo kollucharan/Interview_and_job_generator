@@ -437,8 +437,9 @@
   border-radius: 6px;
   font-size: 16px;
   background-color: white;
-  appearance: menulist; /* Shows the dropdown arrow */
+  appearance: auto;
   cursor: pointer;
+  color:black
 }
 
 .job-level-select:focus {
