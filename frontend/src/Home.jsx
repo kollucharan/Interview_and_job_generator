@@ -124,6 +124,7 @@ export default function Home() {
               className="job-input"
               placeholder="e.g. Frontend Developer ,Inside sales specialist"
               value={jobRole}
+              disabled={loading}
               onChange={(e) => setJobRole(e.target.value)}
             />
           </div>
@@ -134,6 +135,7 @@ export default function Home() {
               id="job-level"
               className="job-level-select"
               value={jobLevel}
+              disabled={loading}
               onChange={(e) => setJobLevel(e.target.value)}
             >
               <option value="" disabled>
@@ -154,6 +156,7 @@ export default function Home() {
               className="skills-textarea"
               placeholder="e.g. JavaScript, React, CSS, Git (separate with commas)"
               value={requiredSkills}
+              disabled={loading}
               onChange={(e) => setRequiredSkills(e.target.value)}
               rows="3"
             />
