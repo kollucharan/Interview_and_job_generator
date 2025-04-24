@@ -187,10 +187,12 @@ export default function Home() {
             <div
               className="example-card"
               onClick={() => {
+                if(!loading){
                 setJobRole("Software Engineer");
                 setJobLevel("Entry");
                 setRequiredSkills("");
                 formRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+                }
               }}
             >
               <h4>Example 1</h4>
@@ -199,10 +201,11 @@ export default function Home() {
             <div
               className="example-card"
               onClick={() => {
+                if(!loading){
                 setJobRole("Inside Sales Specialist");
                 setJobLevel("Entry");
                 setRequiredSkills("");
-                formRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+                formRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });}
               }}
             >
               <h4>Example 2</h4>
@@ -211,10 +214,11 @@ export default function Home() {
             <div
               className="example-card"
               onClick={() => {
+                if(!loading){
                 setJobRole("Accountant");
                 setJobLevel("Entry");
                 setRequiredSkills("");
-                formRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+                formRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });}
               }}
             >
               <h4>Example 3</h4>
