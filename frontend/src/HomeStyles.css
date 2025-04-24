@@ -456,6 +456,9 @@
   resize: vertical;
   min-height: 100px;
   font-family: inherit;
+  background-color: white;
+  color: #000000; 
+  /* font */
 }
 
 .skills-textarea:focus {
