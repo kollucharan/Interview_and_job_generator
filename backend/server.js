@@ -13,8 +13,8 @@ app.use(cors());
 
 app.post("/generate", async (req, res) => {
   const { role, level, skills, company } = req.body;
-  console.log("request recieved");
-
+  
+ 
   if (!role) {
     return res.status(400).json({ error: "Job role is required" });
   }
@@ -115,7 +115,7 @@ app.post("/generate", async (req, res) => {
 
   //     res.json(JSON.parse(aiOutput));
   //   }
-
+  const normalizedSkills = (skills ?? "").toString().trim() || "None";
   try {
     const messages = [
       {
@@ -127,7 +127,8 @@ app.post("/generate", async (req, res) => {
     "1️⃣ **Validate the job role**:",
     "   • Must contain at least one letter [A–Z or a–z].",
     "   • Must NOT be only digits, only punctuation, or empty.",
-    "   • Must be a recognizable professional job title (as on LinkedIn or major job boards).",
+    // "   • Must be a recognizable professional job title  **or internship title** (as on LinkedIn or major job boards).",
+    "   • Must be a recognizable professional job or internship title (as on LinkedIn or major job boards), and may include multiple words separated by spaces (e.g., \"Back End Developer\", \"Human Resources Intern\").",
     "   • If invalid, respond with EXACTLY:",
     "     {\"error\": \"Invalid or unrecognized job role provided.\"}",
     "",
@@ -169,10 +170,11 @@ app.post("/generate", async (req, res) => {
     "     - [Benefit 3]\\n",
     "     [– Optional extra bullet to reach 3–5 total]",
     "",
-    "   • \"questions\": an array of 10 interview questions tailored to the specified Role and Level.\\n",
-  "     - If skills are provided and not \"None\", weave those skills into each question.\\n",
-  "     - If skills are \"None\", generate 10 general but role-and-level-appropriate questions.\\n",
-  "",
+ 
+  "   • \"questions\": a JSON array of exactly 10 strings, e.g.: [\"Question 1…\",\"Question 2…\", …, \"Question 10…\"].\\n",
+"     - If skills are provided and not \"None\", weave those skills into each question.\\n",
+"     - If skills are \"None\", generate 10 general but role-and-level-appropriate questions.\\n",
+"",
     "• Use `\\n` for newlines inside strings.",
     "• Return ONLY valid JSON—no code fences or any extra text.",
     "",
@@ -188,7 +190,7 @@ app.post("/generate", async (req, res) => {
           `Role: ${role}`,
           `Company: ${company}`,
           `Level: ${level}`,
-          `Skills: ${skills || "None"}`
+          `Skills: ${normalizedSkills || "None"}`
         ].join("\n")
   
       }
@@ -210,7 +212,7 @@ app.post("/generate", async (req, res) => {
 
     let aiOutput = response.data.choices[0].message.content.trim();
   
-
+   
     if (aiOutput.startsWith("```json") || aiOutput.startsWith("```")) {
       aiOutput = aiOutput.replace(/^```json\n|^```\n|```$/g, "");
     }
@@ -221,11 +223,9 @@ app.post("/generate", async (req, res) => {
 
    
     await pool.query(
-      "INSERT INTO details (company, role) VALUES ($1, $2)",
+      "INSERT INTO details(company,role) VALUES ($1, $2)",
       [company, role]
     );
-
-   
     res.json(JSON.parse(aiOutput));
   } catch (error) {
     console.error("API Error:", error);
