@@ -14,9 +14,19 @@ export default function Home() {
   const [jobLevel, setJobLevel] = useState("");
   const [requiredSkills, setRequiredSkills] = useState("");
   const [loading, setLoading] = useState(false);
+  const [companyName, setCompanyName] = useState("");
   const navigate = useNavigate();
   const formRef = useRef(null);    
  
+  const handleExampleClick = (role) => {
+    if (!loading) {
+      setCompanyName('Talview');
+      setJobRole(role);
+      setJobLevel('Entry');
+      setRequiredSkills('');
+      formRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
 
   const handleGenerate = async () => {
     if (!jobRole.trim() && !jobLevel.trim()) {
@@ -25,16 +35,22 @@ export default function Home() {
     } else if (!jobRole.trim()) {
       toast.error("Please enter a job role.");
       return;
-    } else if (!jobLevel.trim()) {
-      toast.error("Select Job level.");
+    } else if (!jobLevel.trim()) 
+     { toast.error("Select Job level.");
       return;
     }
+      else if (!companyName.trim()) {
+        toast.error("Please enter a company name.");
+        return;
+      }
+    
 
     setLoading(true);
     try {
       const { data } = await axios.post("https://interview-and-job-generator.onrender.com/generate", {
         role: jobRole,
         level: jobLevel,
+        company: companyName,
         skills: requiredSkills.trim() ? requiredSkills : null,
       });
 
@@ -82,39 +98,26 @@ export default function Home() {
           </p>
         </section>
 
-        {/* <section className="generator-card">
-          <h2 className="card-title">Start by entering a job role </h2>
-          <input
-            type="text"
-            className="job-input"
-            placeholder="e.g. Junior Frontend Developer"
-            value={jobRole}
-            onChange={(e) => setJobRole(e.target.value)}
-          />
-          <button
-            className="generate-btn"
-            onClick={handleGenerate}
-            disabled={loading}
-          >
-            {loading ? (
-              <div className="loader-container">
-                <div className="pulse-loader">
-                  <div className="pulse-bubble pulse-bubble-1"></div>
-                  <div className="pulse-bubble pulse-bubble-2"></div>
-                  <div className="pulse-bubble pulse-bubble-3"></div>
-                </div>
-                <span className="loader-text">Writing your job spec. Thinking like a hiring manager.</span>
-              </div>
-            ) : (
-              "Generate"
-            )}
-          </button>
-        </section> */}
+     
 
         <section className="generator-card" ref={formRef} >
           <h2 className="card-title">
             Let's create your Job Description and Interview Questions
           </h2>
+       
+          <div className="input-group">
+            <label htmlFor="job-role">Company Name</label>
+            <input
+              id="job-role"
+              type="text"
+              className="job-input"
+              placeholder="Enter company name"
+              value={companyName}
+              disabled={loading}
+              onChange={(e) => setCompanyName(e.target.value)}
+            />
+          </div>
+
 
           <div className="input-group">
             <label htmlFor="job-role">Job Role</label>
@@ -158,10 +161,10 @@ export default function Home() {
               value={requiredSkills}
               disabled={loading}
               onChange={(e) => setRequiredSkills(e.target.value)}
-              rows="3"
+              rows="2"
+              cols="30"
             />
-          </div>
-
+          </div>   
           <button
             className="generate-btn"
             onClick={handleGenerate}
@@ -181,55 +184,26 @@ export default function Home() {
             ) : (
               "Generate"
             )}
-          </button>
+          </button> 
+    
+          <h3 className="examples-heading">Examples To Try out</h3>
+
+<div className="examples-grid">
+  {["Software Engineer",  "Marketing Specialist", "Sales Representative"].map((role, index) => (
+    <div
+      key={index}
+      className="example-card"
+      onClick={() => handleExampleClick(role)}
+    >
+      {/* <span className="example-icon">🧪</span> */}
+      <span className="example-text">{role}</span>
+    </div>
+  ))}
+</div>
+
         </section>
 
-        <section className="examples-section">
-          <h3>Examples to Try Out</h3>
-          <div className="examples-container">
-            <div
-              className="example-card"
-              onClick={() => {
-                if(!loading){
-                setJobRole("Software Engineer");
-                setJobLevel("Entry");
-                setRequiredSkills("");
-                formRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
-                }
-              }}
-            >
-              <h4>Example 1</h4>
-              <p>Software Engineer</p>
-            </div>
-            <div
-              className="example-card"
-              onClick={() => {
-                if(!loading){
-                setJobRole("Inside Sales Specialist");
-                setJobLevel("Entry");
-                setRequiredSkills("");
-                formRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });}
-              }}
-            >
-              <h4>Example 2</h4>
-              <p>Inside Sales Specialist</p>
-            </div>
-            <div
-              className="example-card"
-              onClick={() => {
-                if(!loading){
-                setJobRole("Accountant");
-                setJobLevel("Entry");
-                setRequiredSkills("");
-                formRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });}
-              }}
-            >
-              <h4>Example 3</h4>
-              <p>Accountant</p>
-            </div>
-          </div>
-        </section>
-
+    
         <section className="features-section">
           <h2 className="features-heading">Why Use Our Tool?</h2>
           <div className="features-grid">
@@ -275,4 +249,6 @@ export default function Home() {
       </footer>
     </div>
   );
+
+
 }

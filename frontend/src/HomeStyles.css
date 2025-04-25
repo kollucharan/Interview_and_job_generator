@@ -58,7 +58,6 @@
 
   .main-content {
     flex: 1;
-    /* padding: 2rem; */
     padding: 2.5rem;
     width: 100%;
     max-width: 100%;
@@ -412,7 +411,7 @@
     margin-right: 8px;
   }
   
-/* Add these styles to your existing HomeStyles.css file */
+
 
 .input-group {
   margin-bottom: 20px;
@@ -459,7 +458,7 @@
   font-family: inherit;
   background-color: white;
   color: #000000; 
-  /* font */
+
 }
 
 .skills-textarea:focus {
@@ -468,7 +467,9 @@
   box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.2);
 }
 
-/* Maintaining consistent styling for job-input */
+
+
+
 .job-input {
   width: 100%;
   padding: 12px 15px;
@@ -500,7 +501,6 @@
   transition: background-color 0.2s ease;
 }
 
-/* Examples Section Styling */
 .examples-container {
   display: flex;
   justify-content: space-between;
@@ -549,20 +549,17 @@ h3 {
   font-size: 20px;
 }
 
-/* Responsive styling for mobile */
+
 @media (max-width: 768px) {
   .examples-container {
     flex-direction: column;
     gap: 15px;
   }
 }
-/* Container for the whole examples section */
-.examples-section {
-  padding: 40px 20px;
-  background-color: #f9fafb;
-}
 
-/* Section heading */
+
+
+
 .examples-section h3 {
   text-align: center;
   margin-bottom: 32px;
@@ -572,17 +569,8 @@ h3 {
   letter-spacing: 0.5px;
 }
 
-/* Examples grid: switches to 3 columns on desktop, 2 on tablet, 1 on mobile */
-.examples-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 24px;
-  max-width: 1080px;
-  margin: 0 auto;
-  padding: 0 16px;
-}
 
-/* Card base style */
+
 .example-card {
   background: linear-gradient(135deg, #ffffff 0%, #f0f4f8 100%);
   border-radius: 12px;
@@ -595,7 +583,7 @@ h3 {
   cursor: pointer;
 }
 
-/* Card hover/focus effects */
+
 .example-card:hover,
 .example-card:focus {
   transform: translateY(-8px);
@@ -604,7 +592,7 @@ h3 {
   outline: none;
 }
 
-/* Title inside card */
+
 .example-card h4 {
   margin: 0 0 12px;
   color: #111827;
@@ -612,7 +600,7 @@ h3 {
   font-weight: 600;
 }
 
-/* Role text */
+
 .example-card p {
   margin: 0;
   color: #2563eb;
@@ -622,18 +610,18 @@ h3 {
   transition: color 0.2s ease;
 }
 
-/* Role text hover effect */
+
 .example-card p:hover {
   color: #1e40af;
   text-decoration: underline;
 }
 
-/* Keyboard-focus visible outline */
+
 .example-card:focus-visible {
   box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.5);
 }
 
-/* Responsive tweaks */
+
 @media (max-width: 768px) {
   .examples-section {
     padding: 32px 10px;
@@ -659,10 +647,166 @@ h3 {
 }
 @media (max-width: 768px) {
   .examples-container {
-    display: flex;            /* switch from grid to flex */
-    flex-direction: column;   /* stack cards vertically */
-    align-items: stretch;     /* full-width cards */
-    gap: 16px;                /* space between cards */
-    padding: 0 12px;          /* optional side padding */
+    display: flex;            
+    flex-direction: column;   
+    align-items: stretch;     
+    gap: 16px;                
+    padding: 0 12px;          
   }
 }
+
+.generator-card {
+  background-color: white;
+  padding: 1.5rem;
+  margin: 0 auto 2rem;
+  width: 100%;
+  max-width: 800px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.card-title {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 0.75rem;
+}
+
+label {
+  margin-bottom: 0.25rem;
+  font-weight: 500;
+}
+
+.job-input,
+.job-level-select,
+.skills-textarea {
+  padding: 0.5rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+}
+
+.skills-textarea {
+  min-height: 60px;
+  resize: vertical;
+}
+
+.generate-btn {
+  margin-top: 1rem;
+  padding: 0.75rem;
+}
+
+.examples-section {
+  margin-top: 1.25rem;
+}
+
+.examples-section h3 {
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+}
+.generator-card {
+  background-color: white;
+  padding: 1.5rem;
+  margin: 0 auto 2rem;
+  width: 100%;
+  max-width: 800px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.card-title {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 0.5rem; 
+}
+
+label {
+  margin-bottom: 0.2rem;
+  font-weight: 500;
+}
+
+.job-input,
+.job-level-select,
+.skills-textarea {
+  padding: 0.4rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  margin-bottom: 0;
+}
+
+.skills-textarea {
+  min-height: 50px;
+  resize: vertical;
+}
+
+
+.input-group + .input-group {
+  margin-top: 0.5rem; 
+}
+
+.generate-btn {
+  margin-top: 0.75rem;
+  padding: 0.75rem;
+}
+
+.examples-section {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: space-around;
+}
+.examples-heading {
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: #374151;
+}
+
+.examples-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 1rem;
+}
+
+.example-card {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem;
+  background-color: #f9fafb; 
+  border: 1px solid #e5e7eb; 
+  border-radius: 0.75rem;
+  cursor: pointer;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+  transition: all 0.2s ease-in-out;
+}
+
+.example-card:hover {
+  background-color: #ffffff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transform: scale(1.02);
+}
+
+.example-icon {
+  font-size: 1.25rem;
+  color: #2563eb; 
+}
+
+.example-text {
+  font-weight: 500;
+  color: #1d4ed8; 
+}
+.head-logo {
+  height: 40px; 
+  width: auto;
+}
+
