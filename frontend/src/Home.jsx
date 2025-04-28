@@ -33,19 +33,19 @@ export default function Home() {
   };
 
   const handleGenerate = async () => {
-    if (!jobRole.trim() && !jobLevel.trim()) {
-      toast.error("Please enter a job role and select a job level.");
-      return;
-    } else if (!jobRole.trim()) {
-      toast.error("Please enter a job role.");
-      return;
-    } else if (!jobLevel.trim()) {
-      toast.error("Select Job level.");
-      return;
-    } else if (!companyName.trim()) {
-      toast.error("Please enter a company name.");
-      return;
-    }
+    if (!jobRole.trim() || !jobLevel.trim() || !companyName.trim()) {
+      toast.error("Please enter All Required Fields.");
+      return;}
+    // } else if (!jobRole.trim()) {
+    //   toast.error("Please enter a job role.");
+    //   return;
+    // } else if (!jobLevel.trim()) {
+    //   toast.error("Select Job level.");
+    //   return;
+    // } else if (!companyName.trim()) {
+    //   toast.error("Please enter a company name.");
+    //   return;
+    // }
 
     setLoading(true);
     try {

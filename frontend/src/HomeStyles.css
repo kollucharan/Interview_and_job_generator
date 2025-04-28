@@ -23,10 +23,10 @@
   
 
   .header {
-  
+
     background-color:#1D4ED8;
     color: white;
-    padding: 1rem;
+    padding: 0.9rem;
     width: 100%;
   }
   
@@ -58,7 +58,7 @@
 
   .main-content {
     flex: 1;
-    padding: 2.5rem;
+    padding: 1.0rem;
     width: 100%;
     max-width: 100%;
     margin: 0 auto;
@@ -70,7 +70,7 @@
   .hero {
     width: 100%;
     max-width: 1200px;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
     text-align: center;
   }
   
@@ -767,8 +767,9 @@ label {
 .examples-heading {
   font-size: 1.125rem;
   font-weight: 600;
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
   color: #374151;
+  margin-top: 10px;
 }
 
 .examples-grid {
