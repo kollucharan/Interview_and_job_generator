@@ -26,7 +26,11 @@ export default function Home() {
       setRequiredSkills('');
       formRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
-  };
+  }; 
+
+  const visit = () => {
+    window.open("https://www.talview.com/", "_blank");
+  }
 
   const handleGenerate = async () => {
     if (!jobRole.trim() && !jobLevel.trim()) {
@@ -47,7 +51,7 @@ export default function Home() {
 
     setLoading(true);
     try {
-      const { data } = await axios.post("https://interview-and-job-generator.onrender.com/generate", {
+      const { data } = await axios.post("http://localhost:5000/generate", {
         role: jobRole,
         level: jobLevel,
         company: companyName,
@@ -85,6 +89,7 @@ export default function Home() {
           <div className="logo">
             <img src={headlogo} alt="Talview Logo" className="head-logo" />
           </div>
+          {/* <div><button onClick={visit}>Talview</button></div> */}
         </div>
       </header>
       <main className="main-content">
