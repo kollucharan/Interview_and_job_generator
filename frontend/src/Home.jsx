@@ -16,21 +16,21 @@ export default function Home() {
   const [loading, setLoading] = useState(false);
   const [companyName, setCompanyName] = useState("");
   const navigate = useNavigate();
-  const formRef = useRef(null);    
- 
+  const formRef = useRef(null);
+
   const handleExampleClick = (role) => {
     if (!loading) {
-      setCompanyName('Talview');
+      setCompanyName("Talview");
       setJobRole(role);
-      setJobLevel('Entry');
-      setRequiredSkills('');
-      formRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      setJobLevel("Entry");
+      setRequiredSkills("");
+      formRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
     }
-  }; 
+  };
 
   const visit = () => {
     window.open("https://www.talview.com/", "_blank");
-  }
+  };
 
   const handleGenerate = async () => {
     if (!jobRole.trim() && !jobLevel.trim()) {
@@ -39,15 +39,13 @@ export default function Home() {
     } else if (!jobRole.trim()) {
       toast.error("Please enter a job role.");
       return;
-    } else if (!jobLevel.trim()) 
-     { toast.error("Select Job level.");
+    } else if (!jobLevel.trim()) {
+      toast.error("Select Job level.");
+      return;
+    } else if (!companyName.trim()) {
+      toast.error("Please enter a company name.");
       return;
     }
-      else if (!companyName.trim()) {
-        toast.error("Please enter a company name.");
-        return;
-      }
-    
 
     setLoading(true);
     try {
@@ -103,13 +101,11 @@ export default function Home() {
           </p>
         </section>
 
-     
-
-        <section className="generator-card" ref={formRef} >
+        <section className="generator-card" ref={formRef}>
           <h2 className="card-title">
             Let's create your Job Description and Interview Questions
           </h2>
-       
+
           <div className="input-group">
             <label htmlFor="job-role">Company Name</label>
             <input
@@ -123,7 +119,6 @@ export default function Home() {
             />
           </div>
 
-
           <div className="input-group">
             <label htmlFor="job-role">Job Role</label>
             <input
@@ -135,10 +130,25 @@ export default function Home() {
               disabled={loading}
               onChange={(e) => setJobRole(e.target.value)}
             />
-          </div>
+          </div> 
+
+          {/* <div className="input-group">
+            <label htmlFor="required-skills">Required Skills (Optional)</label>
+            <textarea
+              id="required-skills"
+              className="skills-textarea"
+              placeholder="e.g. JavaScript, React, CSS, Git (separate with commas)"
+              value={requiredSkills}
+              disabled={loading}
+              onChange={(e) => setRequiredSkills(e.target.value)}
+              rows="2"
+              cols="30"
+            />
+          </div> */}
+
 
           <div className="input-group">
-            <label htmlFor="job-level">Job Level</label>
+            <label htmlFor="job-level">Experience Level</label>
             <select
               id="job-level"
               className="job-level-select"
@@ -149,14 +159,18 @@ export default function Home() {
               <option value="" disabled>
                 Select Level
               </option>
-              <option value="Entry">Entry Level</option>
-              <option value="Mid">Mid Level</option>
-              <option value="Senior">Senior Level</option>
-              <option value="Lead">Lead Level</option>
-              <option value="Manager">Manager Level</option>
+              <option value="entry">Entry-Level (0-1 years)</option>
+              <option value="junior">Junior (1-2 years)</option>
+              <option value="associate">Associate (2-3 years)</option>
+              <option value="mid">Mid-Level (3-5 years)</option>
+              <option value="senior">Senior (5-8 years)</option>
+              <option value="lead">Lead/Principal (8+ years)</option>
+              <option value="manager">Manager (Team Management)</option>
+              <option value="director">Director (Department Oversight)</option>
+              <option value="executive">Executive (C-Suite/VP)</option>
             </select>
           </div>
-
+   
           <div className="input-group">
             <label htmlFor="required-skills">Required Skills (Optional)</label>
             <textarea
@@ -169,7 +183,8 @@ export default function Home() {
               rows="2"
               cols="30"
             />
-          </div>   
+          </div>
+         Add specific skills for more tailored responses and better results.
           <button
             className="generate-btn"
             onClick={handleGenerate}
@@ -189,26 +204,28 @@ export default function Home() {
             ) : (
               "Generate"
             )}
-          </button> 
-    
+          </button>
+
           <h3 className="examples-heading">Examples To Try out</h3>
 
-<div className="examples-grid">
-  {["Software Engineer",  "Marketing Specialist", "Sales Representative"].map((role, index) => (
-    <div
-      key={index}
-      className="example-card"
-      onClick={() => handleExampleClick(role)}
-    >
-      {/* <span className="example-icon">🧪</span> */}
-      <span className="example-text">{role}</span>
-    </div>
-  ))}
-</div>
-
+          <div className="examples-grid">
+            {[
+              "Software Engineer",
+              "Marketing Specialist",
+              "Sales Representative",
+            ].map((role, index) => (
+              <div
+                key={index}
+                className="example-card"
+                onClick={() => handleExampleClick(role)}
+              >
+                {/* <span className="example-icon">🧪</span> */}
+                <span className="example-text">{role}</span>
+              </div>
+            ))}
+          </div>
         </section>
 
-    
         <section className="features-section">
           <h2 className="features-heading">Why Use Our Tool?</h2>
           <div className="features-grid">
@@ -254,6 +271,4 @@ export default function Home() {
       </footer>
     </div>
   );
-
-
 }
