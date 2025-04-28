@@ -188,7 +188,7 @@ export default function Home() {
             />
           </div>
           <p className="form-tip">
-            Add specific skills for more tailored responses and better results.
+           Add specific skills for more tailored responses and better results.
           </p>
           <button
             className="generate-btn"
