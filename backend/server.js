@@ -142,10 +142,10 @@ try {
     return res.status(400).json({ error: "Invalid input provided." });
   }
   
-  // await pool.query(
-  //   "INSERT INTO details(company,role) VALUES ($1, $2)",
-  //   [company, role]
-  // );
+  await pool.query(
+    "INSERT INTO details(company,role) VALUES ($1, $2)",
+    [company, role]
+  );
   res.json(JSON.parse(aiOutput));
   } catch (error) {
     console.error("API Error:", error);
