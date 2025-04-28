@@ -83,7 +83,7 @@ try {
         "        Executive leadership experience with industry-wide perspective (for executive level)\\n",
        
         "     - Education: [e.g., Bachelor's degree in X or equivalent]\\n",
-        "     - Technical skills: ${skills && skills !== \"None\" ? skills : \"Communication, problem-solving, teamwork, and time-management skills relevant to the role\"}\\n",
+        "     - Technical skills: ${skills && skills !== \"None\" ? skills : \" Excellent Communication, problem-solving, teamwork, and time-management skills \"}\\n",
         "     - Soft skills: [appropriate for ${level} level]\\n",
         "     - [Optional extra bullet to reach 4–6 total]\\n",
         "     ## Benefits",
