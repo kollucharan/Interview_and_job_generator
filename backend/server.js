@@ -143,6 +143,7 @@ app.post("/generate", async (req, res) => {
     "",
     "4️⃣ **Generate Output**:",
     "   • Return exactly one JSON object with two keys: \"description\" and \"questions\".",
+    "   • ⚠️ **MANDATORY**: your JSON **must** include both \"description\" (a non-empty markdown string) **and** \"questions\" (an array of exactly 10 strings); do not omit or alter either key under any circumstance.",
     "",
     "   • \"description\": a markdown-formatted string (use `\\n` for newlines) with these sections in order:",
     "     ## Description",
