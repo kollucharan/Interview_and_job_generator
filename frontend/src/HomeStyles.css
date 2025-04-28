@@ -810,4 +810,18 @@ label {
   height: 40px; 
   width: auto;
 }
+.form-tip {
+  margin-top: 10px;
+  color: #333; 
+  font-size: 14px;
+  text-align: center; 
+  max-width: 90%;
+ 
+}
 
+@media (max-width: 480px) {
+  .form-tip {
+    font-size: 12px; 
+    padding: 8px 10px;
+  }
+}

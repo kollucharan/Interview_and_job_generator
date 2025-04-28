@@ -35,7 +35,8 @@ export default function Home() {
   const handleGenerate = async () => {
     if (!jobRole.trim() || !jobLevel.trim() || !companyName.trim()) {
       toast.error("Please enter All Required Fields.");
-      return;}
+      return;
+    }
     // } else if (!jobRole.trim()) {
     //   toast.error("Please enter a job role.");
     //   return;
@@ -49,12 +50,15 @@ export default function Home() {
 
     setLoading(true);
     try {
-      const { data } = await axios.post("https://interview-and-job-generator.onrender.com/generate", {
-        role: jobRole,
-        level: jobLevel,
-        company: companyName,
-        skills: requiredSkills.trim() ? requiredSkills : null,
-      });
+      const { data } = await axios.post(
+        "https://interview-and-job-generator.onrender.com/generate",
+        {
+          role: jobRole,
+          level: jobLevel,
+          company: companyName,
+          skills: requiredSkills.trim() ? requiredSkills : null,
+        }
+      );
 
       if (data.error) {
         toast.error(data.error);
@@ -130,7 +134,7 @@ export default function Home() {
               disabled={loading}
               onChange={(e) => setJobRole(e.target.value)}
             />
-          </div> 
+          </div>
 
           {/* <div className="input-group">
             <label htmlFor="required-skills">Required Skills (Optional)</label>
@@ -145,7 +149,6 @@ export default function Home() {
               cols="30"
             />
           </div> */}
-
 
           <div className="input-group">
             <label htmlFor="job-level">Experience Level</label>
@@ -170,7 +173,7 @@ export default function Home() {
               <option value="executive">Executive (C-Suite/VP)</option>
             </select>
           </div>
-   
+
           <div className="input-group">
             <label htmlFor="required-skills">Required Skills (Optional)</label>
             <textarea
@@ -184,7 +187,9 @@ export default function Home() {
               cols="30"
             />
           </div>
-         Add specific skills for more tailored responses and better results.
+          <p className="form-tip">
+            Add specific skills for more tailored responses and better results.
+          </p>
           <button
             className="generate-btn"
             onClick={handleGenerate}
