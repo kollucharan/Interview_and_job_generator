@@ -116,7 +116,7 @@ export default function Home() {
               id="job-role"
               type="text"
               className="job-input"
-              placeholder="Enter company name"
+              placeholder="e.g. Talview, Google, Microsoft"
               value={companyName}
               disabled={loading}
               onChange={(e) => setCompanyName(e.target.value)}
@@ -129,7 +129,7 @@ export default function Home() {
               id="job-role"
               type="text"
               className="job-input"
-              placeholder="e.g. Frontend Developer ,Inside sales specialist"
+              placeholder="e.g. Frontend Developer ,Inside sales specialist,Insurance Claims Specialist "
               value={jobRole}
               disabled={loading}
               onChange={(e) => setJobRole(e.target.value)}
@@ -164,8 +164,8 @@ export default function Home() {
               </option>
               <option value="entry">Entry-Level (0-1 years)</option>
               <option value="junior">Junior (1-2 years)</option>
-              <option value="associate">Associate (2-3 years)</option>
-              <option value="mid">Mid-Level (3-5 years)</option>
+              {/* <option value="associate">Associate (2-3 years)</option> */}
+              <option value="mid">Mid-Level (2-4 years)</option>
               <option value="senior">Senior (5-8 years)</option>
               <option value="lead">Lead/Principal (8+ years)</option>
               <option value="manager">Manager (Team Management)</option>
