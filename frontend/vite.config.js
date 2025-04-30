@@ -8,5 +8,6 @@ export default defineConfig({
   plugins: [react()],
   // base: '/jdgenerator/',
   // base: '/jdgenerator/',
-  base: '/',
+  // base: '/',
+  base: '/jdgenerator/',
 })

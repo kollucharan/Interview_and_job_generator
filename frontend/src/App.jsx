@@ -5,7 +5,7 @@ import JobDetails from "./JobDetails";
 
 export default function App() {
   return (
-    <Router >
+    <Router  basename="/jdgenerator/" >
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/details" element={<JobDetails />} />
