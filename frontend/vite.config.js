@@ -9,5 +9,5 @@ export default defineConfig({
   // base: '/jdgenerator/',
   // base: '/jdgenerator/',
   // base: '/',
-  base: '/jdgenerator/',
+  // base: '/jdgenerator/',
 })
