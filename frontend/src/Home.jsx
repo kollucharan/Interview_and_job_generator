@@ -166,7 +166,7 @@ export default function Home() {
               <option value="junior">Junior (1-2 years)</option>
               {/* <option value="associate">Associate (2-3 years)</option> */}
               <option value="mid">Mid-Level (2-4 years)</option>
-              <option value="senior">Senior (5-8 years)</option>
+              <option value="senior">Senior (5-7 years)</option>
               <option value="lead">Lead/Principal (8+ years)</option>
               <option value="manager">Manager (Team Management)</option>
               <option value="director">Director (Department Oversight)</option>
