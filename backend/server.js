@@ -9,7 +9,26 @@ const PORT = 5000;
 
 const app = express();
 app.use(express.json());
-app.use(cors());
+
+const allowedOrigins = [
+  'https://generatejobdescriptionandquestions.netlify.app',
+  'https://agents.talview.com'
+];
+
+const corsOptions = {
+  origin: (origin, callback) => {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true); // Allow the request
+    } else {
+      callback(new Error('Not allowed by CORS')); // Reject the request
+    }
+  },
+  credentials: true, // Allows cookies/auth headers
+};
+
+app.use(cors(corsOptions));
+
+// app.use(cors());
 
 app.post("/generate", async (req, res) => {
   const { role, level, skills, company } = req.body;
