@@ -12,7 +12,7 @@ app.use(express.json());
 
 const allowedOrigins = [
   'https://generatejobdescriptionandquestions.netlify.app',
-  'https://agents.talview.com'
+  'https://ai-agents.talview.com'
 ];
 
 const corsOptions = {
