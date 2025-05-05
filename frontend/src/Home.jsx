@@ -28,9 +28,9 @@ export default function Home() {
     }
   };
 
-  const visit = () => {
-    window.open("https://www.talview.com/", "_blank");
-  };
+  // const visit = () => {
+  //   window.open("https://www.talview.com/", "_blank");
+  // };
 
   const handleGenerate = async () => {
     if (!jobRole.trim() || !jobLevel.trim() || !companyName.trim()) {

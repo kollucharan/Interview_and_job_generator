@@ -812,8 +812,8 @@ label {
 }
 .form-tip {
   margin-top: 8px;       
-  color: #666;          
-  font-size: 11px;       
+  color: #000000;         
+  font-size: 9.25px;       
   text-align: left;     
   max-width: 100%;       
   padding-left: 2px;     
@@ -821,7 +821,7 @@ label {
 
 @media (max-width: 480px) {
   .form-tip {
-    font-size: 10px;     
+    font-size: 8.75px;     
     padding-left: 2px;   
   }
 }
