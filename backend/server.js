@@ -224,7 +224,7 @@ app.post("/generate", async (req, res) => {
     if (aiOutput.startsWith("json") || aiOutput.startsWith("")) {
       aiOutput = aiOutput.replace(/^json\n|^\n|```$/g, "");
     }
-    console.log("AI Output:", aiOutput);
+    // console.log("AI Output:", aiOutput);
 
     if (JSON.parse(aiOutput).error) {
       return res.status(400).json({ error: "Invalid input provided." });
