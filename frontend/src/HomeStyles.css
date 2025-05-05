@@ -812,8 +812,11 @@ label {
 }
 .form-tip {
   margin-top: 8px;       
-  color: #000000;         
-  font-size: 9.15px;       
+  /* color: #000000;          */
+  font-family: "Segoe UI", sans-serif;
+ /* color : #757575; */
+  font-size: 9.40px;   
+  font-weight: 500;    
   text-align: left;     
   max-width: 100%;       
   padding-left: 2px;     
@@ -821,7 +824,8 @@ label {
 
 @media (max-width: 480px) {
   .form-tip {
-    font-size: 8.75px;     
+    font-size: 8.75px;    
+    font-weight: 500; 
     padding-left: 2px;   
   }
 }
