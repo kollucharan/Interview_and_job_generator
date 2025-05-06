@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
@@ -13,8 +12,7 @@ export default function JobDetails() {
   const [description] = useState(state?.description || "");
   const [questions] = useState(state?.questions || []);
   const [role] = useState(state?.role || "");
-  const [copySuccess, setCopySuccess] = useState("");
-
+  const [copying, setCopying] = useState(false);
   if (!state) {
     return (
       <div className="job-details-container text-center mt-10">
@@ -29,20 +27,30 @@ export default function JobDetails() {
     );
   }
 
+  // const copyToClipboard = (text) => {
+  //   navigator.clipboard.writeText(text)
+  //     .then(() => {
+  //       setCopySuccess("Copied!");
+  //       setTimeout(() => setCopySuccess(""), 2000);
+  //     })
+  //     .catch(() => {
+  //       setCopySuccess("Failed to copy");
+  //       setTimeout(() => setCopySuccess(""), 2000);
+  //     });
+  // };
   const copyToClipboard = (text) => {
-    navigator.clipboard.writeText(text)
+    navigator.clipboard
+      .writeText(text)
       .then(() => {
-        setCopySuccess("Copied!");
-        setTimeout(() => setCopySuccess(""), 2000);
+        setCopying(true);
+        setTimeout(() => setCopying(false), 1000);
       })
       .catch(() => {
-        setCopySuccess("Failed to copy");
-        setTimeout(() => setCopySuccess(""), 2000);
+        setCopying(false);
       });
   };
-
   const goto = () => {
-    window.open('https://www.talview.com/en/', '_blank', 'noopener,noreferrer');
+    window.open("https://www.talview.com/en/", "_blank", "noopener,noreferrer");
   };
 
   const downloadAsText = (content, fileName) => {
@@ -50,85 +58,43 @@ export default function JobDetails() {
     saveAs(blob, fileName);
   };
 
-  // const downloadAsPDF = () => {
-  //   const pdf = new jsPDF({
-  //     orientation: 'portrait',
-  //     unit: 'mm',
-  //     format: 'a4'
-  //   });
   
-  //   const pageWidth = pdf.internal.pageSize.getWidth();
-  //   const margin = 15;
-  //   const textWidth = pageWidth - (margin * 2);
-  //   let y = margin;
-  
-  //   const title = view === "description"
-  //     ? `Job Description for ${role}`
-  //     : `Interview Questions for ${role}`;
-  //   pdf.setFont("helvetica", "bold");
-  //   pdf.setFontSize(16);
-  //   pdf.text(title, margin, y);
-  //   y += 10;
-  
-  //   pdf.setFont("helvetica", "normal");
-  //   pdf.setFontSize(12);
-  //   const body = view === "description"
-  //     ? description
-  //     : questions.map((q, i) => `${i + 1}. ${q}`).join("\n\n");
-  
-  //   const lines = pdf.splitTextToSize(body, textWidth);
-  //   lines.forEach(line => {
-  //     if (y > pdf.internal.pageSize.getHeight() - margin) {
-  //       pdf.addPage();
-  //       y = margin;
-  //     }
-  //     pdf.text(line, margin, y);
-  //     y += 6;
-  //   });
-  
-  //   const fileName = view === "description"
-  //     ? `${role}_job_description.pdf`
-  //     : `${role}_interview_questions.pdf`;
-  //   pdf.save(fileName);
-  // };
-    
+
   const downloadAsPDF = () => {
     const pdf = new jsPDF({
-      orientation: 'portrait',
-      unit: 'mm',
-      format: 'a4'
+      orientation: "portrait",
+      unit: "mm",
+      format: "a4",
     });
-  
+
     const pageWidth = pdf.internal.pageSize.getWidth();
     const pageHeight = pdf.internal.pageSize.getHeight();
     const margin = 15;
     const textWidth = pageWidth - margin * 2;
     let y = margin;
-  
-    // Title
-    const title = view === "description"
-      ? `Job Description for ${role}`
-      : `Interview Questions for ${role}`;
-  
+
+    const title =
+      view === "description"
+        ? `Job Description for ${role}`
+        : `Interview Questions for ${role}`;
+
     pdf.setFont("helvetica", "bold");
     pdf.setFontSize(18);
     pdf.setTextColor(40, 40, 40);
     pdf.text(title, pageWidth / 2, y, { align: "center" });
     y += 10;
-  
-    // Line separator
+
     pdf.setDrawColor(180);
     pdf.line(margin, y, pageWidth - margin, y);
     y += 10;
-  
-    // Body content
+
     pdf.setFont("helvetica", "normal");
     pdf.setFontSize(12);
     pdf.setTextColor(60, 60, 60);
-  
+
     if (view === "description") {
       const lines = pdf.splitTextToSize(description, textWidth);
-      lines.forEach(line => {
+      lines.forEach((line) => {
         pdf.text(line, margin, y);
         y += 7;
       });
@@ -136,22 +102,20 @@ export default function JobDetails() {
       questions.forEach((q, i) => {
         const lines = pdf.splitTextToSize(`${i + 1}. ${q}`, textWidth);
         lines.forEach((line, index) => {
-        
           pdf.text(line, margin, y);
           y += 6;
         });
         y += 2;
       });
     }
-  
-    const fileName = view === "description"
-      ? `${role}_job_description.pdf`
-      : `${role}_interview_questions.pdf`;
-  
+
+    const fileName =
+      view === "description"
+        ? `${role}_job_description.pdf`
+        : `${role}_interview_questions.pdf`;
+
     pdf.save(fileName);
   };
-  
-  
 
   const downloadDescription = () => {
     downloadAsText(description, `${role}_job_description.txt`);
@@ -178,10 +142,7 @@ export default function JobDetails() {
           >
             Interview Questions
           </button>
-          <button
-            className="home-button"
-            onClick={() => navigate("/")}
-          >
+          <button className="home-button" onClick={() => navigate("/")}>
             Home
           </button>
           <div className="role-label">For Role: {role}</div>
@@ -197,10 +158,10 @@ export default function JobDetails() {
                 Edit
               </button>
               <button
-                className="action-button"
+               className={`action-button ${copying ? "copied" : ""}`}
                 onClick={() => copyToClipboard(description)}
               >
-                Copy
+                {copying ? "Copied!" : "Copy"}
               </button>
               <button
                 className="action-button download-button"
@@ -214,9 +175,7 @@ export default function JobDetails() {
               >
                 Download PDF
               </button>
-              {copySuccess && (
-                <span className="copy-success">{copySuccess}</span>
-              )}
+             
             </div>
           </div>
           <div className="markdown-content">
@@ -234,10 +193,10 @@ export default function JobDetails() {
                 Edit
               </button>
               <button
-                className="action-button"
+               className={`action-button ${copying ? "copied" : ""}`}
                 onClick={() => copyToClipboard(questions.join("\n\n"))}
               >
-                Copy
+                {copying ? "Copied!" : "Copy"}
               </button>
               <button
                 className="action-button download-button"
@@ -251,9 +210,6 @@ export default function JobDetails() {
               >
                 Download PDF
               </button>
-              {copySuccess && (
-                <span className="copy-success">{copySuccess}</span>
-              )}
             </div>
           </div>
           <ol className="questions-list">
@@ -266,5 +222,3 @@ export default function JobDetails() {
     </div>
   );
 }
-
-

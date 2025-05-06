@@ -22,31 +22,36 @@ export default function Home() {
     if (!loading) {
       setCompanyName("Talview");
       setJobRole(role);
-      setJobLevel("Entry");
-      setRequiredSkills("");
+
+      const roleDetails = {
+        "Software Engineer": {
+          level: "entry",
+          skills: " Data Structures, Algorithms, Problem Solving",
+        },
+        "Marketing Specialist": {
+          level: "mid",
+          skills: "SEO, Digital Marketing,Communication",
+        },
+        "Sales Representative": {
+          level: "entry",
+          skills: "Negotiation, Lead Generation, CRM,",
+        },
+      };
+
+      const { level, skills } = roleDetails[role];
+
+      setJobLevel(level);
+      setRequiredSkills(skills);
+
       formRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
     }
   };
-
-  // const visit = () => {
-  //   window.open("https://www.talview.com/", "_blank");
-  // };
 
   const handleGenerate = async () => {
     if (!jobRole.trim() || !jobLevel.trim() || !companyName.trim()) {
       toast.error("Please enter All Required Fields.");
       return;
     }
-    // } else if (!jobRole.trim()) {
-    //   toast.error("Please enter a job role.");
-    //   return;
-    // } else if (!jobLevel.trim()) {
-    //   toast.error("Select Job level.");
-    //   return;
-    // } else if (!companyName.trim()) {
-    //   toast.error("Please enter a company name.");
-    //   return;
-    // }
 
     setLoading(true);
     try {
@@ -89,19 +94,26 @@ export default function Home() {
       <header className="header">
         <div className="header-container">
           <div className="logo">
-            <img src={headlogo} alt="Talview Logo" className="head-logo" />
+            <a
+              href="https://www.talview.com"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img src={headlogo} alt="Talview Logo" className="head-logo" />
+            </a>
           </div>
-          {/* <div><button onClick={visit}>Talview</button></div> */}
         </div>
       </header>
       <main className="main-content">
         <section className="hero">
           <h1 className="main-heading">
-            Free AI Job Description & Interview Question Generator
+            Effortless Job Description Generator & Interview Question Creation
+            for Hiring Managers
           </h1>
           <p className="sub-heading">
-            Role AI Agent helps you instantly generate accurate, ready-to-use
-            job descriptions and interview questions tailored to any role.
+            Quickly generate Free tailored interview questions and job
+            descriptions for any role—so you can focus on finding the right fit,
+            not writing questions.
           </p>
         </section>
 
@@ -116,7 +128,7 @@ export default function Home() {
               id="job-role"
               type="text"
               className="job-input"
-              placeholder="e.g. Talview, Google, Microsoft"
+              placeholder="Enter your company name (e.g. Microsoft,Talview)"
               value={companyName}
               disabled={loading}
               onChange={(e) => setCompanyName(e.target.value)}
@@ -129,26 +141,12 @@ export default function Home() {
               id="job-role"
               type="text"
               className="job-input"
-              placeholder="e.g. Frontend Developer ,Inside sales specialist,Insurance Claims Specialist "
+              placeholder="Enter the job role (e.g. Full-Stack Developer)"
               value={jobRole}
               disabled={loading}
               onChange={(e) => setJobRole(e.target.value)}
             />
           </div>
-
-          {/* <div className="input-group">
-            <label htmlFor="required-skills">Required Skills (Optional)</label>
-            <textarea
-              id="required-skills"
-              className="skills-textarea"
-              placeholder="e.g. JavaScript, React, CSS, Git (separate with commas)"
-              value={requiredSkills}
-              disabled={loading}
-              onChange={(e) => setRequiredSkills(e.target.value)}
-              rows="2"
-              cols="30"
-            />
-          </div> */}
 
           <div className="input-group">
             <label htmlFor="job-level">Experience Level</label>
@@ -164,7 +162,6 @@ export default function Home() {
               </option>
               <option value="entry">Entry-Level (0-1 years)</option>
               <option value="junior">Junior (1-2 years)</option>
-              {/* <option value="associate">Associate (2-3 years)</option> */}
               <option value="mid">Mid-Level (2-4 years)</option>
               <option value="senior">Senior (5-7 years)</option>
               <option value="lead">Lead/Principal (8+ years)</option>
@@ -179,7 +176,7 @@ export default function Home() {
             <textarea
               id="required-skills"
               className="skills-textarea"
-              placeholder="e.g. JavaScript, React, CSS, Git (separate with commas)"
+              placeholder="Add relevant skills (e.g. React, Node.js,SEO)"
               value={requiredSkills}
               disabled={loading}
               onChange={(e) => setRequiredSkills(e.target.value)}
@@ -188,7 +185,7 @@ export default function Home() {
             />
           </div>
           <p className="form-tip">
-           Add specific skills for more tailored responses and better results.
+            Add specific skills for more tailored responses and better results.
           </p>
           <button
             className="generate-btn"
@@ -211,7 +208,7 @@ export default function Home() {
             )}
           </button>
 
-          <h3 className="examples-heading">Examples To Try out</h3>
+          <h3 className="examples-heading">Quick Examples</h3>
 
           <div className="examples-grid">
             {[
@@ -224,7 +221,6 @@ export default function Home() {
                 className="example-card"
                 onClick={() => handleExampleClick(role)}
               >
-                {/* <span className="example-icon">🧪</span> */}
                 <span className="example-text">{role}</span>
               </div>
             ))}

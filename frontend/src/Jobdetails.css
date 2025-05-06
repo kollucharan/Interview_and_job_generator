@@ -167,21 +167,27 @@ h2 {
   align-items: center;
 }
 
+
 .action-button {
   padding: 0.5rem 1rem;
   border: 1px solid #e5e7eb;
   border-radius: 6px;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.2s ease; 
   font-size: 0.875rem;
   font-weight: 500;
   display: flex;
   align-items: center;
   gap: 0.4rem;
-  color: #4b5563;
-  background-color: #f9fafb;
+  color: #4b5563; 
+  background-color: #f9fafb; 
   outline: none;
 }
+
+.action-button.copied {
+  color: #28a745; 
+}
+
 
 .action-button:before {
   font-size: 0.875rem;
