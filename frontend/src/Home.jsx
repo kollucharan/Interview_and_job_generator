@@ -26,15 +26,15 @@ export default function Home() {
       const roleDetails = {
         "Software Engineer": {
           level: "entry",
-          skills: " Data Structures, Algorithms, Problem Solving",
+          skills: "Data Structures, Algorithms, Problem Solving"
         },
         "Marketing Specialist": {
           level: "mid",
-          skills: "SEO, Digital Marketing,Communication",
+          skills: "SEO, Digital Marketing, Communication"
         },
         "Sales Representative": {
           level: "entry",
-          skills: "Negotiation, Lead Generation, CRM,",
+          skills: "Negotiation, Lead Generation, CRM"
         },
       };
 
