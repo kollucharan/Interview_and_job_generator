@@ -6,7 +6,7 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   // base: '/jdgenerator/',
   plugins: [react()],
-  base: '/jdgenerator/', 
+  base: '/jd-generator/', 
   // base: '/jdgenerator/',
   // base: '/jdgenerator/',
   // base: '/',
