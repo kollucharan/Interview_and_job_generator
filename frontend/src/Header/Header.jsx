@@ -6,7 +6,7 @@ export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const handleLogoClick = () => {
-    window.open("https://www.talview.com/en/", "_blank");
+    window.open("https://ai-agents.talview.com/", "_blank");
   };
 
   const toggleMenu = () => {
@@ -48,10 +48,10 @@ export default function Header() {
           target="_blank"
           rel="noreferrer"
         >
-          Our solutions
+          Our Solutions
         </a>
         <a href="https://www.talview.com/en/" target="_blank" rel="noreferrer">
-          Home
+           Talview Home
         </a>
       </nav>
     </header>
