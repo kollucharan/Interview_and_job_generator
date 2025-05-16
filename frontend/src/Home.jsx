@@ -8,6 +8,7 @@ import atsIcon from "./assets/images/ATS.svg";
 import jdIcon from "./assets/images/job-description.svg";
 import questionIcon from "./assets/images/question.svg";
 import headlogo from "./assets/images/Talviewlogo.png";
+import Header from "./Header/Header";
 import { useRef } from "react";
 export default function Home() {
   const [jobRole, setJobRole] = useState("");
@@ -91,7 +92,7 @@ export default function Home() {
   return (
     <div className="app-container">
       <ToastContainer position="top-right" autoClose={3000} />
-      <header className="header">
+      {/* <header className="header">
         <div className="header-container">
           <div className="logo">
             <a
@@ -103,7 +104,8 @@ export default function Home() {
             </a>
           </div>
         </div>
-      </header>
+      </header> */}
+   <Header/>
       <main className="main-content">
         <section className="hero">
           <h1 className="main-heading">
