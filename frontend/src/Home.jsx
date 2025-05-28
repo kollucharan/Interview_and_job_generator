@@ -9,6 +9,7 @@ import jdIcon from "./assets/images/job-description.svg";
 import questionIcon from "./assets/images/question.svg";
 import headlogo from "./assets/images/Talviewlogo.png";
 import Header from "./Header/Header";
+import Footer from "./Footer/footer";
 import { useRef } from "react";
 export default function Home() {
   const [jobRole, setJobRole] = useState("");
@@ -18,6 +19,7 @@ export default function Home() {
   const [companyName, setCompanyName] = useState("");
   const navigate = useNavigate();
   const formRef = useRef(null);
+ 
 
   const handleExampleClick = (role) => {
     if (!loading) {
@@ -92,19 +94,7 @@ export default function Home() {
   return (
     <div className="app-container">
       <ToastContainer position="top-right" autoClose={3000} />
-      {/* <header className="header">
-        <div className="header-container">
-          <div className="logo">
-            <a
-              href="https://www.talview.com"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <img src={headlogo} alt="Talview Logo" className="head-logo" />
-            </a>
-          </div>
-        </div>
-      </header> */}
+     
    <Header/>
       <main className="main-content">
         <section className="hero">
@@ -269,9 +259,7 @@ export default function Home() {
         </section>
       </main>
 
-      <footer className="footer">
-        <p>© 2025 Talview. All rights reserved.</p>
-      </footer>
+      <Footer/>
     </div>
   );
 }

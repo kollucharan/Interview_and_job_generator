@@ -181,10 +181,13 @@
   
   .feature-card {
     background-color: white;
-    padding: 1.5rem;
-    border-radius: 10px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
-    text-align: left;
+  padding: 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
   }
   
   .feature-card h3 {
@@ -288,8 +291,9 @@
 
 .icon{
   margin-right: 1 rem;
-  width: 30px; 
-  height: 30px; 
+  width: 30px !important; 
+  height: 30px  !important; 
+   margin-bottom: 16px;
 }
 
 .generate-btn:hover:not(:disabled) {

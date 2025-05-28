@@ -27,17 +27,6 @@ export default function JobDetails() {
     );
   }
 
-  // const copyToClipboard = (text) => {
-  //   navigator.clipboard.writeText(text)
-  //     .then(() => {
-  //       setCopySuccess("Copied!");
-  //       setTimeout(() => setCopySuccess(""), 2000);
-  //     })
-  //     .catch(() => {
-  //       setCopySuccess("Failed to copy");
-  //       setTimeout(() => setCopySuccess(""), 2000);
-  //     });
-  // };
   const copyToClipboard = (text) => {
     navigator.clipboard
       .writeText(text)

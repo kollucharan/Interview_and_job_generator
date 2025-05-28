@@ -1,11 +1,10 @@
-*,
-*::before,
-*::after {
+
+*, *::before, *::after {
   box-sizing: border-box;
 }
 
 .site-header {
-  background-color: #1D4ED8;
+  background-color: #1d4ed8;
   color: #fff;
   padding: 18px 20px;
   display: flex;
@@ -16,27 +15,30 @@
   position: relative;
 }
 
+@media (min-width: 1024px) {
+  .site-header {
+    padding: 18px 120px;
+  }
+}
+
 .Headerclass {
   width: 140px;
-  height: auto;
   cursor: pointer;
-  flex-shrink: 0;
 }
 
 .nav-links {
   display: flex;
   gap: 1.5rem;
-  flex-wrap: wrap;
-  justify-content: flex-end;
   flex-grow: 1;
+  justify-content: flex-end;
+  align-items: center;
 }
 
 .nav-links a {
   color: #fff;
   text-decoration: none;
-  font-size: 1rem;
   font-weight: 500;
-  white-space: nowrap;
+   line-height: 1.2;
 }
 
 .hamburger {
@@ -46,18 +48,15 @@
   width: 25px;
   height: 20px;
   cursor: pointer;
-  margin-left: auto;
 }
 
 .hamburger span {
-  display: block;
   height: 3px;
-  background-color: #fff;
+  background: #fff;
   border-radius: 2px;
-  transition: transform 0.3s ease, opacity 0.3s ease;
+  transition: 0.3s;
 }
 
-/* transform for open state */
 .hamburger.open span:nth-child(1) {
   transform: translateY(8.5px) rotate(45deg);
 }
@@ -68,54 +67,127 @@
   transform: translateY(-8.5px) rotate(-45deg);
 }
 
-/* Mobile behavior */
+.custom-dropdown {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+
+.dropdown-toggle {
+   background: none;
+  border: none;
+  color: #fff;
+  font-family: inherit;
+  font-weight: 500;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  line-height: 1.2;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: calc(100% + 15px); 
+  left: 0;
+  background: #fff;
+  border-radius: 0.25rem;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  min-width: 160px;
+  display: none;
+  z-index: 10;
+}
+
+
+.custom-dropdown::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  height: 15px; 
+  background: transparent;
+  z-index: 9;
+}
+
+.dropdown-menu a {
+  display: block;
+  padding: 0.5rem 1rem;
+  color: #000;
+  text-decoration: none;
+  border-bottom: 1px solid #eee;
+}
+.dropdown-menu a:last-child {
+  border-bottom: none;
+}
+.dropdown-menu a:hover {
+  background: #eff7ff;
+}
+
+@media (min-width: 769px) {
+  .custom-dropdown:hover .dropdown-menu {
+    display: block;
+  }
+}
+
 @media (max-width: 768px) {
   .hamburger {
     display: flex;
   }
+  
   .nav-links {
     position: absolute;
     top: 100%;
     left: 0;
     right: 0;
-    background-color: #1D4ED8;
     flex-direction: column;
-    align-items: flex-start;
+    background: #1d4ed8;
     padding: 1rem 2rem;
     gap: 1rem;
     transform: translateY(-200%);
-    transition: transform 0.3s ease;
+    transition: 0.3s;
     pointer-events: none;
     opacity: 0;
+    align-items: flex-start;
   }
+  
   .nav-links.mobile-open {
     transform: translateY(0);
     pointer-events: auto;
     opacity: 1;
   }
-}
-@media (min-width: 1024px) {
-  .site-header {
-    padding: 18px 120px; /* 18px vertical, 120px horizontal */
+  
+  .custom-dropdown {
+    width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
   }
-}
+  
 
-/* 2. Mobile screens: logo on left, hamburger on right */
-@media (max-width: 768px) {
-  .site-header {
-    justify-content: space-between; /* push items to edges */
-    padding: 18px 20px;             /* keep your mobile padding */
+  .custom-dropdown::after {
+    display: none;
   }
-
-  .header-left {
-    order: 1; /* logo first */
+  
+  .dropdown-menu {
+    position: static;
+    background: #1d4ed8;
+    box-shadow: none;
+    width: 100%;
+    margin-top: 0.5rem;
+    padding: 0;
+    display: none;
   }
-
-  .hamburger {
-    order: 2; /* hamburger second (far right) */
+  
+  .dropdown-menu a {
+    color: #fff;
+    border: none;
+    padding: 0.5rem 0;
+    margin-left: 1rem;
   }
-
-  .nav-links {
-    order: 3; /* menu slides in underneath */
+  
+  .custom-dropdown.active .dropdown-menu {
+    display: block;
   }
 }
