@@ -14,7 +14,7 @@ export default function Header() {
   ];
 
   const dropdownItems = [
-    { text: "Interview Questions Generator", url: "https://ai-agents.talview.com/interview-question-generator" },
+    { text: "Interview Question Generator", url: "https://ai-agents.talview.com/interview-question-generator" },
     { text: "Quiz Generator", url: "https://ai-agents.talview.com/ai-quiz-generator" },
   ];
 
