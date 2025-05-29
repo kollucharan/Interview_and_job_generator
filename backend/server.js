@@ -10,21 +10,15 @@ const PORT = 5000;
 const app = express();
 app.use(express.json());
 
+
 const allowedOrigins = [
   'https://generatejobdescriptionandquestions.netlify.app',
   'https://ai-agents.talview.com',
-  
 ];
 
 const corsOptions = {
-  origin: (origin, callback) => {
-    if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS')); 
-    }
-  },
-  credentials: true, 
+  origin: allowedOrigins,
+  credentials: true,
 };
 
 app.use(cors(corsOptions));
