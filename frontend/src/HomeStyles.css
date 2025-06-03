@@ -201,6 +201,7 @@
   .feature-card h3 {
     margin-bottom: 0.5rem;
     color: #1e3a8a;
+   
   }
   
 
@@ -826,3 +827,7 @@ label {
   }
 }
 
+ .feature-card h3 {
+    
+   margin-top: 0px;
+  }
