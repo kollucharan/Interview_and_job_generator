@@ -35,7 +35,13 @@ app.post("/generate", async (req, res) => {
   if (!level) {
     return res.status(400).json({ error: "Job level is required" });
   }
-
+  if(!company){
+     return res.status(400).json({ error: "Company is required field" });
+  }
+  await pool.query(
+      "INSERT INTO details(company,role) VALUES ($1, $2)",
+      [company, role]
+    );
   const normalizedSkills = (skills ?? "").toString().trim() || "None";
   try {
    
@@ -143,18 +149,23 @@ app.post("/generate", async (req, res) => {
     }
     // console.log("AI Output:", aiOutput);
 
-    if (JSON.parse(aiOutput).error) {
+       let parsed;
+    try {
+      parsed = JSON.parse(aiOutput);
+    } catch (parseErr) {
+      // console.error("Failed to parse LLM output:", parseErr, "Raw:", aiOutput);
+      return res.status(502).json({ error: "Failed to generate job description", raw: aiOutput });
+    }
+
+
+    if (parsed.error) {
       return res.status(400).json({ error: "Invalid input provided." });
     }
 
-   
-    await pool.query(
-      "INSERT INTO details(company,role) VALUES ($1, $2)",
-      [company, role]
-    );
-    res.json(JSON.parse(aiOutput));
+    // res.json(JSON.parse(aiOutput));
+    return res.json(parsed);
   } catch (error) {
-    console.error("API Error:", error);
+    // console.error("API Error:", error);
     res.status(500).json({ error: "Failed to generate job description" });
   }
 });
