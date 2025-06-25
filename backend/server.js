@@ -26,7 +26,7 @@ app.use(cors(corsOptions));
 // app.use(cors());
 
 app.post("/generate", async (req, res) => {
-  const { role, level, skills, company } = req.body;
+  const { role, level, skills, company ,email} = req.body;
 
   if (!role) {
     return res.status(400).json({ error: "Job role is required" });
@@ -38,9 +38,12 @@ app.post("/generate", async (req, res) => {
   if(!company){
      return res.status(400).json({ error: "Company is required field" });
   }
+    if(!email){
+     return res.status(400).json({ error: "Email is required field" });
+  }
   await pool.query(
-      "INSERT INTO details(company,role) VALUES ($1, $2)",
-      [company, role]
+      "INSERT INTO details(company,role,email) VALUES ($1, $2,$3)",
+      [company,role,email]
     );
   const normalizedSkills = (skills ?? "").toString().trim() || "None";
   try {
@@ -147,13 +150,12 @@ app.post("/generate", async (req, res) => {
     if (aiOutput.startsWith("json") || aiOutput.startsWith("")) {
       aiOutput = aiOutput.replace(/^json\n|^\n|```$/g, "");
     }
-    // console.log("AI Output:", aiOutput);
+  
 
        let parsed;
     try {
       parsed = JSON.parse(aiOutput);
     } catch (parseErr) {
-      // console.error("Failed to parse LLM output:", parseErr, "Raw:", aiOutput);
       return res.status(502).json({ error: "Failed to generate job description", raw: aiOutput });
     }
 
@@ -162,14 +164,12 @@ app.post("/generate", async (req, res) => {
       return res.status(400).json({ error: "Invalid input provided." });
     }
 
-    // res.json(JSON.parse(aiOutput));
     return res.json(parsed);
   } catch (error) {
-    // console.error("API Error:", error);
     res.status(500).json({ error: "Failed to generate job description" });
   }
 });
 
 app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
+  console.log(`Server is running on port ${PORT}`);
 });

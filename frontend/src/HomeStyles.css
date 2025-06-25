@@ -831,3 +831,153 @@ label {
     
    margin-top: 0px;
   }
+
+/* test */
+.generator-card {
+  max-width: 800px;   
+  width: 90%;
+  margin: 0 auto;
+ 
+}
+
+
+.popup-overlay,
+.reactjs-popup-overlay {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.5) !important;
+  padding: 16px !important;      
+  overflow-y: auto !important;    
+}
+
+
+.popup-content,
+.reactjs-popup-content {
+
+  width: 100% !important;
+  max-width: 600px !important;   
+  border-radius: 12px !important;
+  background: #ffffff !important;
+  padding: 32px 24px 40px !important;
+  box-sizing: border-box !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2) !important;
+
+  max-height: 90vh !important;
+  overflow-y: auto !important;
+}
+
+
+.popup-content h2,
+.reactjs-popup-content h2 {
+  font-size: 1.75rem;
+  font-weight: 600;
+  margin: 0 0 24px;
+  text-align: center;
+  color: #111;
+}
+
+
+.popup-content input[type="email"],
+.reactjs-popup-content input[type="email"],
+.email-popup-input {
+  width: 100% !important;
+  padding: 16px 18px !important;
+  font-size: 1rem !important;
+  border: 1.5px solid #ccc !important;
+  border-radius: 8px !important;
+  margin-bottom: 24px !important;
+  box-sizing: border-box;
+  transition: border-color 0.2s;
+}
+.popup-content input[type="email"]:focus,
+.reactjs-popup-content input[type="email"]:focus,
+.email-popup-input:focus {
+  outline: none;
+  border-color: #0066cc !important;
+}
+
+
+.popup-content button,
+.reactjs-popup-content button,
+.email-popup-button {
+  display: block;
+  width: 100% !important;
+  padding: 16px !important;
+  font-size: 1.1rem !important;
+  font-weight: 500;
+  background-color: #0044cc !important;
+  color: #fff !important;
+  border: none !important;
+  border-radius: 8px !important;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.1s;
+  text-align: center;
+}
+.popup-content button:disabled,
+.reactjs-popup-content button:disabled,
+.email-popup-button:disabled {
+  opacity: 0.6 !important;
+  cursor: not-allowed !important;
+}
+.popup-content button:hover:not(:disabled),
+.reactjs-popup-content button:hover:not(:disabled),
+.email-popup-button:hover:not(:disabled) {
+  background-color: #0033aa !important;
+  transform: translateY(-1px);
+}
+
+.email-popup-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: transparent !important;
+  border: none !important;
+  font-size: 1.5rem !important;
+  cursor: pointer !important;
+  color: #666 !important;
+  line-height: 1;
+  padding: 4px;
+}
+.email-popup-close:hover {
+  color: #000 !important;
+}
+
+
+@media (max-width: 768px) {
+ 
+  .generator-card {
+    max-width: 90%;
+  }
+
+  .popup-content,
+  .reactjs-popup-content {
+    padding: 24px 16px 32px !important;
+    max-width: 90% !important;
+  }
+  .popup-content h2,
+  .reactjs-popup-content h2,
+  .email-popup-header {
+    font-size: 1.5rem !important;
+    margin-bottom: 20px !important;
+  }
+  .popup-content input[type="email"],
+  .reactjs-popup-content input[type="email"],
+  .email-popup-input {
+    padding: 14px 16px !important;
+    font-size: 0.95rem !important;
+    margin-bottom: 20px !important;
+  }
+  .popup-content button,
+  .reactjs-popup-content button,
+  .email-popup-button {
+    padding: 14px !important;
+    font-size: 1rem !important;
+  }
+ 
+  .popup-overlay,
+  .reactjs-popup-overlay {
+    padding: 12px !important;
+  }
+}
+

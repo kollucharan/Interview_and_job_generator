@@ -4,6 +4,8 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 import "./HomeStyles.css";
+import Popup from 'reactjs-popup';
+import 'reactjs-popup/dist/index.css';
 import atsIcon from "./assets/images/ATS.svg";
 import jdIcon from "./assets/images/job-description.svg";
 import questionIcon from "./assets/images/question.svg";
@@ -17,9 +19,11 @@ export default function Home() {
   const [requiredSkills, setRequiredSkills] = useState("");
   const [loading, setLoading] = useState(false);
   const [companyName, setCompanyName] = useState("");
+  const [email, setEmail] = useState('');
+  const [emailpopup, setEmailpoup] = useState(false);
   const navigate = useNavigate();
   const formRef = useRef(null);
- 
+
 
   const handleExampleClick = (role) => {
     if (!loading) {
@@ -55,12 +59,28 @@ export default function Home() {
       toast.error("Please enter All Required Fields.");
       return;
     }
-
+    setEmailpoup(true);
+  };
+  const closePopup = () => {
+   setEmailpoup(false);
+  };
+  const handleSubmit = async () => {
+    if (!email) {
+      toast.error("Please Enter Email.");
+      return;
+    }
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+  toast.error("Please enter a valid email address.");
+  return;
+}
+    setEmailpoup(false);
     setLoading(true);
     try {
       const { data } = await axios.post(
         "https://interview-and-job-generator.onrender.com/generate",
         {
+          email: email,
           role: jobRole,
           level: jobLevel,
           company: companyName,
@@ -91,11 +111,12 @@ export default function Home() {
     }
   };
 
+
   return (
     <div className="app-container">
       <ToastContainer position="top-right" autoClose={3000} />
-     
-   <Header/>
+
+      <Header />
       <main className="main-content">
         <section className="hero">
           <h1 className="main-heading">
@@ -257,9 +278,39 @@ export default function Home() {
             </div>
           </div>
         </section>
+  <Popup
+        open={emailpopup}
+        closeOnDocumentClick
+        onClose={closePopup}
+        closeOnEscape
+        modal
+        className="email-popup-content"
+        overlayClassName="email-popup-overlay"
+      >
+        {() => (
+          <div className="email-popup-inner">
+            <h2 className="email-popup-header">
+              Enter your email to generate Description
+            </h2>
+            <input
+              type="email"
+              placeholder="Enter Business Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="email-popup-input"
+            />
+            <button
+              className="email-popup-button"
+              onClick={handleSubmit}
+              disabled={loading}
+            >
+              {loading ? "Generating..." : "Submit and Generate"}
+            </button>
+          </div>
+        )}
+      </Popup>
       </main>
-
-      <Footer/>
+      <Footer />
     </div>
   );
 }
