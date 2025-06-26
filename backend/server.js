@@ -45,6 +45,17 @@ app.post("/generate", async (req, res) => {
       "INSERT INTO details(company,role,email) VALUES ($1, $2,$3)",
       [company,role,email]
     );
+    const payload ={
+      email:email
+    }
+    try{
+     await axios.post('https://n8n-ycyt.onrender.com/webhook/new-insert',payload)
+    }
+  catch (error) {
+    console.log(error);
+   return  res.status(500).json({ error: "Failed to generate job description" });
+  }
+ 
   const normalizedSkills = (skills ?? "").toString().trim() || "None";
   try {
    
