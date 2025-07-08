@@ -45,18 +45,18 @@ app.post("/generate", async (req, res) => {
       "INSERT INTO details(company,role,email) VALUES ($1, $2,$3)",
       [company,role,email]
     );
-    const payload ={
-      email:email,
-         company:company,
-         role:role,
-    }
-    try{
-     await axios.post('https://n8n-ycyt.onrender.com/webhook/insert-data',payload)
-    }
-  catch (error) {
-    console.log(error);
-   return  res.status(500).json({ error: "Failed to generate job description" });
-  }
+  //   const payload ={
+  //     email:email,
+  //        company:company,
+  //        role:role,
+  //   }
+  //   try{
+  //    await axios.post('https://n8n-ycyt.onrender.com/webhook/insert-data',payload)
+  //   }
+  // catch (error) {
+  //   console.log(error);
+  //  return  res.status(500).json({ error: "Failed to generate job description" });
+  // }
  
   const normalizedSkills = (skills ?? "").toString().trim() || "None";
   try {
